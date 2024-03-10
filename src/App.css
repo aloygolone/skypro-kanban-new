@@ -117,7 +117,7 @@ body {
   left: 0;
 }
 
-.pop-exit {
+/* .pop-exit {
   display: none;
   width: 100%;
   height: 100%;
@@ -127,8 +127,8 @@ body {
   top: 0;
   left: 0;
   z-index: 5;
-}
-.pop-exit__container {
+} */
+/* .pop-exit__container {
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -138,8 +138,8 @@ body {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.4);
-}
-.pop-exit__block {
+} */
+/* .pop-exit__block {
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
@@ -149,16 +149,16 @@ body {
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
-}
-.pop-exit__ttl h2 {
+} */
+/* .pop-exit__ttl h2 {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;
   letter-spacing: -0.4px;
   margin-bottom: 20px;
-}
-.pop-exit__exit-yes {
+} */
+/* .pop-exit__exit-yes {
   width: 153px;
   height: 30px;
   background-color: #565eef;
@@ -182,8 +182,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.pop-exit__exit-no {
+} */
+/* .pop-exit__exit-no {
   width: 153px;
   height: 30px;
   background-color: transparent;
@@ -206,13 +206,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.pop-exit__form-group {
+} */
+/* .pop-exit__form-group {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
 .pop-user-set__name {
   color: #000;
@@ -800,7 +800,7 @@ body {
   z-index: 2;
 }
 
-.main {
+/* .main {
   width: 100%;
   background-color: #eaeef6;
 }
@@ -808,7 +808,7 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 25px 0 49px;
-}
+} */
 .main__content {
   width: 100%;
   display: flex;
@@ -918,11 +918,11 @@ body {
 } */
 
 @media screen and (max-width: 1200px) {
-  .main__block {
+  /* .main__block {
     width: 100%;
     margin: 0 auto;
     padding: 40px 0 64px;
-  }
+  } */
   .main__content {
     display: block;
   }
@@ -1082,21 +1082,21 @@ body {
     height: 37px;
   }
 }
-@media only screen and (max-width: 375px) {
-  .pop-exit__block {
+/* @media only screen and (max-width: 375px) {
+  /* .pop-exit__block {
     padding: 50px 20px;
-  }
-  .pop-exit__exit-yes {
+  } */
+  /* .pop-exit__exit-yes {
     width: 100%;
     height: 40px;
     margin-right: 0;
     margin-bottom: 10px;
-  }
-  .pop-exit__exit-no {
+  } */
+  /* .pop-exit__exit-no {
     width: 100%;
     height: 40px;
-  }
-  .pop-exit__form-group {
+  } */
+  /* .pop-exit__form-group {
     display: block;
-  }
-}
+  } */
+/* } */
