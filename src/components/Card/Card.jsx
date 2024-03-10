@@ -1,11 +1,14 @@
+import { themeNameColor } from "../../lib/ThemeColor";
+import * as S from "./Card.styled";
+
 export default function Card({ theme, title, date }) {
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className="card__theme _orange">
-            <p className="_orange">{theme}</p>
-          </div>
+          <S.CardTheme $themeColor={themeNameColor[theme]}>
+            <S.ThemeText>{theme}</S.ThemeText>
+          </S.CardTheme>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
               <div></div>
