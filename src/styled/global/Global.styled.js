@@ -32,7 +32,8 @@ body {
   color: #000000;
 }
 
-button {
+button,
+._btn {
   cursor: pointer;
   outline: none;
 }
