@@ -1,48 +1,7 @@
-import styled, { createGlobalStyle } from "styled-components";
-import { hover01 } from "../../styled/common/Common.styled";
+import styled from "styled-components";
+import { hover01 } from "./Common.styled";
 
-export const GlobalStyleSignIn = createGlobalStyle`
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-a,
-a:visited {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-button,
-._btn {
-  cursor: pointer;
-}
-
-ul li {
-  list-style: none;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  font-family: "Roboto", sans-serif;
-}
-
-div,
-button,
-a {
-  font-family: "Roboto", sans-serif;
-}
-`;
-
-export const WrapperSignIn = styled.div`
+export const WrapperSignPage = styled.div`
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -50,7 +9,7 @@ export const WrapperSignIn = styled.div`
   background-color: #eaeef6;
 `;
 
-export const ContainerSignIn = styled.div`
+export const ContainerSignPage = styled.div`
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -58,7 +17,7 @@ export const ContainerSignIn = styled.div`
   background-color: #eaeef6;
 `;
 
-export const ModalSignIn = styled.div`
+export const ModalSignPage = styled.div`
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -72,7 +31,7 @@ export const ModalSignIn = styled.div`
   }
 `;
 
-export const ModalBlockSignIn = styled.div`
+export const ModalBlockSignPage = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
@@ -92,7 +51,7 @@ export const ModalBlockSignIn = styled.div`
   }
 `;
 
-export const ModalTitleSignIn = styled.div`
+export const ModalTitleSignPage = styled.div`
   h2 {
     text-align: center;
     font-size: 20px;
@@ -103,7 +62,7 @@ export const ModalTitleSignIn = styled.div`
   }
 `;
 
-export const ModalFormLogin = styled.form`
+export const ModalFormLoginSignPage = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -114,7 +73,7 @@ export const ModalFormLogin = styled.form`
   }
 `;
 
-export const ModalInput = styled.input`
+export const ModalInputSignPage = styled.input`
   width: 100%;
   min-width: 100%;
   border-radius: 8px;
@@ -139,7 +98,7 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const ModalButtonEnter = styled.button`
+export const ModalButtonEnterSignPage = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -170,7 +129,7 @@ export const ModalButtonEnter = styled.button`
   }
 `;
 
-export const ModalFormGroup = styled.div`
+export const ModalFormGroupSignPage = styled.div`
   text-align: center;
   p,
   a {

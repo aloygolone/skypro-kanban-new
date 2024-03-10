@@ -1,31 +1,32 @@
-import * as S from "./SignInPage.styled";
+import * as S from "../../styled/common/SignPages.styled";
+import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 
 export default function SignIn() {
   return (
     <>
-      <S.GlobalStyleSignIn />
-      <S.WrapperSignIn>
-        <S.ContainerSignIn>
-          <S.ModalSignIn>
-            <S.ModalBlockSignIn>
-              <S.ModalTitleSignIn>
+      <GlobalStyleSignPage />
+      <S.WrapperSignPage>
+        <S.ContainerSignPage>
+          <S.ModalSignPage>
+            <S.ModalBlockSignPage>
+              <S.ModalTitleSignPage>
                 <h2>Вход</h2>
-              </S.ModalTitleSignIn>
-              <S.ModalFormLogin>
-                <S.ModalInput type="text" placeholder="Эл. почта" />
-                <S.ModalInput type="password" placeholder="Пароль" />
-                <S.ModalButtonEnter>
+              </S.ModalTitleSignPage>
+              <S.ModalFormLoginSignPage>
+                <S.ModalInputSignPage type="text" placeholder="Эл. почта" />
+                <S.ModalInputSignPage type="password" placeholder="Пароль" />
+                <S.ModalButtonEnterSignPage>
                   <a href="../main.html">Войти</a>
-                </S.ModalButtonEnter>
-                <S.ModalFormGroup>
+                </S.ModalButtonEnterSignPage>
+                <S.ModalFormGroupSignPage>
                   <p>Нужно зарегистрироваться?</p>
                   <a href="signup.html">Регистрируйтесь здесь</a>
-                </S.ModalFormGroup>
-              </S.ModalFormLogin>
-            </S.ModalBlockSignIn>
-          </S.ModalSignIn>
-        </S.ContainerSignIn>
-      </S.WrapperSignIn>
+                </S.ModalFormGroupSignPage>
+              </S.ModalFormLoginSignPage>
+            </S.ModalBlockSignPage>
+          </S.ModalSignPage>
+        </S.ContainerSignPage>
+      </S.WrapperSignPage>
     </>
   );
 }
