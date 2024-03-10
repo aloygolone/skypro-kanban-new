@@ -1,13 +1,14 @@
 import { Container } from "../../styled/common/Common.styled";
+import { MainBlock, MainStyled } from "./MainContent.styled";
 
 export default function MainContent({ children }) {
   return (
-    <main className="main">
+    <MainStyled>
       <Container>
-        <div className="main__block">
+        <MainBlock>
           <div className="main__content">{children}</div>
-        </div>
+        </MainBlock>
       </Container>
-    </main>
+    </MainStyled>
   );
 }
