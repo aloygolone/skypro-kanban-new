@@ -15,3 +15,11 @@ export const MainBlock = styled.div`
     padding: 40px 0 64px;
   }
 `;
+
+export const MainContentStyled = styled.div`
+  width: 100%;
+  display: flex;
+  @media screen and (max-width: 1200px) {
+    display: block;
+  }
+`;
