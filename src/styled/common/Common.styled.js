@@ -56,3 +56,21 @@ to {
     opacity: 1;
 }
 `;
+
+export const PopUserSet = css`
+  button {
+    width: 72px;
+    height: 30px;
+    background: transparent;
+    color: #565eef;
+    border-radius: 4px;
+    border: 1px solid #565eef;
+    a {
+      color: #565eef;
+    }
+  }
+
+  &:target {
+    display: block;
+  }
+`;
