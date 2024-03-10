@@ -98,7 +98,7 @@ export const ModalInputSignPage = styled.input`
   }
 `;
 
-export const ModalButtonEnterSignPage = styled.button`
+export const ModalButtonEnterSignPage = styled.span`
   width: 100%;
   height: 30px;
   background-color: #565eef;

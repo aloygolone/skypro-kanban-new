@@ -1,7 +1,7 @@
 import * as S from "../../styled/common/SignPages.styled";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 
-export default function SignIn() {
+export default function SignIn({login}) {
   return (
     <>
       <GlobalStyleSignPage />
@@ -15,8 +15,8 @@ export default function SignIn() {
               <S.ModalFormLoginSignPage>
                 <S.ModalInputSignPage type="text" placeholder="Эл. почта" />
                 <S.ModalInputSignPage type="password" placeholder="Пароль" />
-                <S.ModalButtonEnterSignPage>
-                  <a href="../main.html">Войти</a>
+                <S.ModalButtonEnterSignPage onClick={login}>
+                  Войти
                 </S.ModalButtonEnterSignPage>
                 <S.ModalFormGroupSignPage>
                   <p>Нужно зарегистрироваться?</p>
