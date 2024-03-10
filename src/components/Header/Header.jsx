@@ -1,39 +1,37 @@
 import { useState } from "react";
 import PopUser from "../popups/PopUser/PopUser";
+import * as S from "./Header.styled";
+import { Container } from "../../styled/common/Common.styled";
 
 export default function Header({ addCard }) {
   const [isOpen, setIsOpen] = useState(false);
   const togglePopUser = () => setIsOpen((prevState) => !prevState);
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <S.StyledHeader>
+      <Container>
+        <S.HeaderBlock>
+          <S.HeaderLogo>
+            {/* className="header__logo _light" */}
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </S.HeaderLogo>
+          <S.HeaderLogo>
+            {/* div className="header__logo _dark" */}
             <a href="" target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button
-              onClick={addCard}
-              className="header__btn-main-new _hover01"
-              id="btnMainNew"
-            >
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew onClick={addCard}>
               Создать новую задачу
-            </button>
-            <div onClick={togglePopUser} className="header__user _hover02">
-              Ivan Ivanov
-            </div>
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser onClick={togglePopUser}>Ivan Ivanov</S.HeaderUser>
             {isOpen && <PopUser />}
-          </nav>
-        </div>
-      </div>
-    </header>
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </Container>
+    </S.StyledHeader>
   );
 }
