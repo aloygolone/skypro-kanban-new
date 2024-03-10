@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import { css } from "styled-components";
 
 export const Container = styled.div`
@@ -44,4 +44,15 @@ export const WrapperStyled = styled.div`
   min-height: 100vh;
   overflow: hidden;
   background-color: #f1f1f1;
+`;
+
+export const fadeIn = keyframes`
+from {
+    height: 0;
+    opacity: 0;
+}
+to {
+    height: auto;
+    opacity: 1;
+}
 `;
