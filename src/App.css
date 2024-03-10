@@ -25,7 +25,7 @@ button,
   list-style: none;
 } */
 
-@keyframes card-animation {
+/* @keyframes card-animation {
   0% {
     height: 0;
     opacity: 0;
@@ -34,7 +34,7 @@ button,
     height: auto;
     opacity: 1;
   }
-}
+} */
 /* html,
 body {
   width: 100%;
@@ -62,7 +62,7 @@ body {
   background-color: #33399b;
 } */
 
-._hover02:hover,
+/* ._hover02:hover,
 .header__user:hover {
   color: #33399b;
 }
@@ -70,7 +70,7 @@ body {
 .header__user:hover::after {
   border-left-color: #33399b;
   border-bottom-color: #33399b;
-}
+} */
 
 /* ._hover03:hover {
   background-color: #33399b;
