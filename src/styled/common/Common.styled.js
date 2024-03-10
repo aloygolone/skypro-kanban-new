@@ -18,6 +18,26 @@ export const hover01 = css`
   }
 `;
 
+export const hover02 = css`
+  &:hover {
+    background-color: #33399b;
+  }
+  &:hover::after {
+    border-left-color: #33399b;
+    border-bottom-color: #33399b;
+  }
+`;
+
+export const hover03 = css`
+  &:hover {
+    background-color: #33399b;
+    color: #ffffff;
+    a {
+      color: #ffffff;
+    }
+  }
+`;
+
 export const WrapperStyled = styled.div`
   max-width: 100%;
   width: 100vw;
