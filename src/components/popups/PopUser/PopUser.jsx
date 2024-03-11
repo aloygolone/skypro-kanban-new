@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import * as S from "./PopUser.styled";
+import { appRoutes } from "../../../lib/appRoutes";
 
 export default function PopUser() {
   return (
@@ -9,9 +11,9 @@ export default function PopUser() {
         <p>Темная тема</p>
         <input type="checkbox" className="checkbox" name="checkbox" />
       </S.PopUserSetTheme>
-      <S.PopUserButton>
-        <a href="#popExit">Выйти</a>
-      </S.PopUserButton>
+      <Link to={appRoutes.EXIT}>
+        <S.PopUserButton>Выйти</S.PopUserButton>
+      </Link>
     </S.HeaderPopUserSet>
   );
 }

@@ -15,6 +15,7 @@ export default function Column({ title, cardList }) {
             date={card.date}
             key={card.id}
             status={card.status}
+            id={card.id}
           />
         ))}
       </Cards>
