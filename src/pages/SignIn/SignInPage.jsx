@@ -1,7 +1,29 @@
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../lib/appRoutes";
 import * as S from "../../styled/common/SignPages.styled";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
+import { useState } from "react";
+import { signIn } from "../../api/api";
 
 export default function SignIn({login}) {
+  const [loginData, setLoginData] = useState({ login: "", password: "" });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await signIn(loginData).then((data) => {
+      login(data.user)
+    })
+  };
+
   return (
     <>
       <GlobalStyleSignPage />
@@ -13,14 +35,28 @@ export default function SignIn({login}) {
                 <h2>Вход</h2>
               </S.ModalTitleSignPage>
               <S.ModalFormLoginSignPage>
-                <S.ModalInputSignPage type="text" placeholder="Эл. почта" />
-                <S.ModalInputSignPage type="password" placeholder="Пароль" />
-                <S.ModalButtonEnterSignPage onClick={login}>
+                <S.ModalInputSignPage
+                  value={loginData.login}
+                  onChange={handleInputChange}
+                  type="text"
+                  name="login"
+                  placeholder="Эл. почта"
+                />
+                <S.ModalInputSignPage
+                  value={loginData.password}
+                  onChange={handleInputChange}
+                  type="password"
+                  name="password"
+                  placeholder="Пароль"
+                />
+                <S.ModalButtonEnterSignPage onClick={handleLogin}>
                   Войти
                 </S.ModalButtonEnterSignPage>
                 <S.ModalFormGroupSignPage>
                   <p>Нужно зарегистрироваться?</p>
-                  <a href="signup.html">Регистрируйтесь здесь</a>
+                  <Link to={appRoutes.SIGNUP}>
+                    <span>Регистрируйтесь здесь</span>
+                  </Link>
                 </S.ModalFormGroupSignPage>
               </S.ModalFormLoginSignPage>
             </S.ModalBlockSignPage>

@@ -12,9 +12,7 @@ export default function PopExit({ logout }) {
           </S.PopExitTitle>
           <form className="pop-exit__form" id="formExit" action="#">
             <S.PopExitFormGroup>
-              <Link to={appRoutes.SIGNIN}>
-                <S.PopExitYes onClick={logout}>Да, выйти </S.PopExitYes>
-              </Link>
+              <S.PopExitYes onClick={logout}>Да, выйти </S.PopExitYes>
               <Link to={appRoutes.HOME}>
                 <S.PopExitNo>Нет, остаться </S.PopExitNo>
               </Link>

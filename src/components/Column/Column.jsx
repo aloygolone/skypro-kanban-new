@@ -1,7 +1,10 @@
+
 import Card from "../Card/Card";
 import { Cards, ColumnTitle, MainColumn } from "./Column.styled";
 
+
 export default function Column({ title, cardList }) {
+  
   return (
     <MainColumn>
       <ColumnTitle>
@@ -10,12 +13,12 @@ export default function Column({ title, cardList }) {
       <Cards>
         {cardList.map((card) => (
           <Card
-            theme={card.theme}
+            theme={card.topic}
             title={card.title}
             date={card.date}
-            key={card.id}
+            key={card._id}
             status={card.status}
-            id={card.id}
+            id={card._id}
           />
         ))}
       </Cards>

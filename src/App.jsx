@@ -8,28 +8,29 @@ import SignUp from "./pages/SignUp/SignUpPage";
 import NotFound from "./pages/NotFound/NotFoundPage";
 import TaskPage from "./pages/Task/TaskPage";
 import ExitPage from "./pages/Exit/ExitPage";
-import './App.css';
+import "./App.css";
 
 export default function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  function login() {
-    setUser(true)
-    navigate(appRoutes.HOME)
+  function login(newUser) {
+    setUser(newUser);
+    navigate(appRoutes.HOME);
   }
 
-  function logout() {
-    setUser(false)
-    navigate(appRoutes.SIGNIN)
+  function logout(e) {
+    e.preventDefault();
+    setUser(null);
+    navigate(appRoutes.SIGNIN);
   }
 
   return (
     <Routes>
       <Route element={<PrivateRoute user={user} />}>
-        <Route path={appRoutes.HOME} element={<HomePage />}>
+        <Route path={appRoutes.HOME} element={<HomePage user={user} />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
-          <Route path={appRoutes.EXIT} element={<ExitPage logout={logout}/>} />
+          <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SignIn login={login} />} />
