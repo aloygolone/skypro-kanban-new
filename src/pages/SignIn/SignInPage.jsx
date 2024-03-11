@@ -5,7 +5,7 @@ import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled"
 import { useState } from "react";
 import { signIn } from "../../api/api";
 
-export default function SignIn({login}) {
+export default function SignIn({ login }) {
   const [loginData, setLoginData] = useState({ login: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -20,8 +20,8 @@ export default function SignIn({login}) {
   const handleLogin = async (e) => {
     e.preventDefault();
     await signIn(loginData).then((data) => {
-      login(data.user)
-    })
+      login(data.user);
+    });
   };
 
   return (

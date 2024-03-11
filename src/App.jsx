@@ -25,6 +25,12 @@ export default function App() {
     navigate(appRoutes.SIGNIN);
   }
 
+  function signup({ e, newUser }) {
+    e.preventDefault();
+    setUser(newUser);
+    navigate(appRoutes.HOME);
+  }
+
   return (
     <Routes>
       <Route element={<PrivateRoute user={user} />}>
@@ -34,7 +40,7 @@ export default function App() {
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SignIn login={login} />} />
-      <Route path={appRoutes.SIGNUP} element={<SignUp />} />
+      <Route path={appRoutes.SIGNUP} element={<SignUp signup={signup} />} />
       <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );
