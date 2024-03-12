@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "../../styled/common/SignPages.styled";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 import { useState } from "react";
 import { signIn } from "../../api/api";
+import { useUser } from "../../hooks/useUser";
 
-export default function SignIn({ login }) {
+export default function SignIn() {
+  const { login } = useUser();
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -21,6 +24,7 @@ export default function SignIn({ login }) {
     e.preventDefault();
     await signIn(loginData).then((data) => {
       login(data.user);
+      navigate(appRoutes.HOME);
     });
   };
 
