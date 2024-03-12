@@ -32,16 +32,16 @@ export default function HomePage() {
       });
   }, [user]);
 
-  const addCard = () => {
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  };
+  // const addCard = () => {
+  //   const newCard = {
+  //     id: cards.length + 1,
+  //     theme: "Web Design",
+  //     title: "Название задачи",
+  //     date: "30.10.23",
+  //     status: "Без статуса",
+  //   };
+  //   setCards([...cards, newCard]);
+  // };
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function HomePage() {
       <WrapperStyled>
         <Outlet />
 
-        <Header addCard={addCard} />
+        <Header />
         {isLoading ? (
           "Данные загружаются..."
         ) : (
