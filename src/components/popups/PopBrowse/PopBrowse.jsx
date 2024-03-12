@@ -1,23 +1,24 @@
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
+import * as S from "./PopBrowse.styled";
 
 export default function PopBrowse() {
   const { id } = useParams();
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи:{id}</h3>
+    <S.PopBrowseStyled>
+      <S.PopBrowseContainer>
+        <S.PopBrowseBlock>
+          <S.PopBrowseContent>
+            <S.PopBrowseTopBlock>
+              <S.PopBroweTitle>Название задачи:{id}</S.PopBroweTitle>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
+            </S.PopBrowseTopBlock>
+            <S.PopBrowseStatus>
+              <S.PopBrowseStatusTitle>Статус</S.PopBrowseStatusTitle>
+              <S.PopBrowseStatusThemes>
                 <div className="status__theme _hide">
                   <p>Без статуса</p>
                 </div>
@@ -33,48 +34,48 @@ export default function PopBrowse() {
                 <div className="status__theme _hide">
                   <p>Готово</p>
                 </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+              </S.PopBrowseStatusThemes>
+            </S.PopBrowseStatus>
+            <S.PopBrowseWrap>
+              <S.PopBrowseForm
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <S.FormBrowseBlock>
+                  <S.FormBrowseTitle htmlFor="textArea01">
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </S.FormBrowseTitle>
+                  <S.FormBrowseArea
                     name="text"
                     id="textArea01"
                     readOnly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></S.FormBrowseArea>
+                </S.FormBrowseBlock>
+              </S.PopBrowseForm>
               <Calendar />
-            </div>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
+            </S.PopBrowseWrap>
+            <S.ThemeDownCategories>
+              <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
               <div className="categories__theme _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
+            </S.ThemeDownCategories>
+            <S.PopBrowseButtonBrowse>
+              <S.ButtonGroup>
+                <S.ButtonChengeDelete>
                   <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
+                </S.ButtonChengeDelete>
+                <S.ButtonChengeDelete>
                   <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
+                </S.ButtonChengeDelete>
+              </S.ButtonGroup>
+              <Link to={appRoutes.HOME}>
+                <S.ButtonClose>
+                  Закрыть
+                </S.ButtonClose>
+              </Link>
+            </S.PopBrowseButtonBrowse>
             <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">
                 <button className="btn-edit__edit _btn-bg _hover01">
@@ -96,9 +97,9 @@ export default function PopBrowse() {
                 </span>
               </Link>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </S.PopBrowseContent>
+        </S.PopBrowseBlock>
+      </S.PopBrowseContainer>
+    </S.PopBrowseStyled>
   );
 }

@@ -44,7 +44,7 @@ export default function PopNewCard() {
         <S.PopNewCardBlock>
           <S.PopNewCardContent>
             <S.PopNewCardTitle>Создание задачи</S.PopNewCardTitle>
-            <Link onClick={appRoutes.HOME}>
+            <Link to={appRoutes.HOME}>
               <S.PopNewCardClose>&#10006;</S.PopNewCardClose>
             </Link>
             <S.PopNewCardWrap>
