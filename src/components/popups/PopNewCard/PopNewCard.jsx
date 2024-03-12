@@ -27,12 +27,14 @@ export default function PopNewCard() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const taskData = {
-      ...newTask, 
+      ...newTask,
       date: selectedDate,
       token: user.token,
     };
-    await postTodo({ taskData })
-    navigate(appRoutes.HOME);
+    await postTodo( taskData ).then(() => {
+      console.log(taskData);
+      navigate(appRoutes.HOME);
+    });
   };
 
   return (
