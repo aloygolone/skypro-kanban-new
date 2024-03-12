@@ -1,24 +1,19 @@
 import { useState } from "react";
 import Calendar from "../../Calendar/Calendar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
+import { postTodo } from "../../../api/api";
+import { useUser } from "../../../hooks/useUser";
 
 export default function PopNewCard() {
+  const { user } = useUser();
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
     topic: "",
   });
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const taskData = {
-      ...newTask,
-      date: selectedDate,
-    };
-    console.log(taskData);
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +22,17 @@ export default function PopNewCard() {
       ...newTask,
       [name]: value,
     });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...newTask, 
+      date: selectedDate,
+      token: user.token,
+    };
+    await postTodo({ taskData })
+    navigate(appRoutes.HOME);
   };
 
   return (

@@ -19,14 +19,14 @@ export async function getTodos({ token }) {
 }
 
 // Отправить задачу
-export async function postTodo({ text, token }) {
+export async function postTodo( {taskData} ) {
   const response = await fetch(kanbanHost, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${taskData.token}`,
     },
     method: "POST",
     body: JSON.stringify({
-      text,
+      taskData,
     }),
   });
 
