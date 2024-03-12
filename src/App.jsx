@@ -25,8 +25,7 @@ export default function App() {
     navigate(appRoutes.SIGNIN);
   }
 
-  function signup({ e, newUser }) {
-    e.preventDefault();
+  function signup( newUser ) {
     setUser(newUser);
     navigate(appRoutes.HOME);
   }
