@@ -5,9 +5,11 @@ import { appRoutes } from "../../../lib/appRoutes";
 import { postTodo } from "../../../api/api";
 import { useUser } from "../../../hooks/useUser";
 import * as S from "./PopNewCard.styled";
+import { useTasks } from "../../../hooks/useTasks";
 
 export default function PopNewCard() {
   const { user } = useUser();
+  const { setCards } = useTasks();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [newTask, setNewTask] = useState({
@@ -32,8 +34,8 @@ export default function PopNewCard() {
       date: selectedDate,
       token: user.token,
     };
-    await postTodo(taskData).then(() => {
-      console.log(taskData);
+    await postTodo(taskData).then((data) => {
+      setCards(data.tasks);
       navigate(appRoutes.HOME);
     });
   };
@@ -83,7 +85,7 @@ export default function PopNewCard() {
               />
             </S.PopNewCardWrap>
             <S.PopNewCategories>
-            <S.PopNewCategoriesSubtitle>Категория</S.PopNewCategoriesSubtitle>
+              <S.PopNewCategoriesSubtitle>Категория</S.PopNewCategoriesSubtitle>
               <S.PopNewCategoriesThemes>
                 <input
                   type="radio"
@@ -110,7 +112,9 @@ export default function PopNewCard() {
                   value="Copywriting"
                   onChange={handleInputChange}
                 />
-                <S.ThemeCopywriting htmlFor="radio3">Copywriting</S.ThemeCopywriting>
+                <S.ThemeCopywriting htmlFor="radio3">
+                  Copywriting
+                </S.ThemeCopywriting>
               </S.PopNewCategoriesThemes>
             </S.PopNewCategories>
             {/* <div className="pop-new-card__categories categories">
@@ -127,10 +131,7 @@ export default function PopNewCard() {
                 </div>
               </div>
             </div> */}
-            <S.FormNewSubmit
-              onClick={handleFormSubmit}
-              id="btnCreate"
-            >
+            <S.FormNewSubmit onClick={handleFormSubmit}>
               Создать задачу
             </S.FormNewSubmit>
           </S.PopNewCardContent>

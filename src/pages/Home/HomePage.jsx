@@ -7,6 +7,7 @@ import Column from "../../components/Column/Column";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api/api";
 import { useUser } from "../../hooks/useUser";
+import { useTasks } from "../../hooks/useTasks";
 
 const statusList = [
   "Без статуса",
@@ -17,9 +18,9 @@ const statusList = [
 ];
 
 export default function HomePage() {
-  const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
+  const { cards, setCards } = useTasks();
 
   useEffect(() => {
     getTodos({ token: user.token })
@@ -30,7 +31,7 @@ export default function HomePage() {
       .catch((error) => {
         alert(error);
       });
-  }, [user]);
+  }, [user, setCards]);
 
   // const addCard = () => {
   //   const newCard = {

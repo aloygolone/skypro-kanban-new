@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound/NotFoundPage";
 import TaskPage from "./pages/Task/TaskPage";
 import ExitPage from "./pages/Exit/ExitPage";
 import "./App.css";
+import AddTaskPage from "./pages/AddTask/AddTaskPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path={appRoutes.HOME} element={<HomePage />}>
           <Route path={appRoutes.TASK} element={<TaskPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage />} />
+          <Route path={appRoutes.ADD_TASK} element={<AddTaskPage />} />
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SignIn />} />
