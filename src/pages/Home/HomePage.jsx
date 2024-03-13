@@ -33,17 +33,6 @@ export default function HomePage() {
       });
   }, [user, setCards]);
 
-  // const addCard = () => {
-  //   const newCard = {
-  //     id: cards.length + 1,
-  //     theme: "Web Design",
-  //     title: "Название задачи",
-  //     date: "30.10.23",
-  //     status: "Без статуса",
-  //   };
-  //   setCards([...cards, newCard]);
-  // };
-
   return (
     <>
       <GlobalStyle />
