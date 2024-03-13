@@ -2,23 +2,29 @@ import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
+import { useTasks } from "../../../hooks/useTasks";
+import { themeNameColor } from "../../../lib/ThemeColor";
 
 export default function PopBrowse() {
   const { id } = useParams();
+  const { cards } = useTasks();
+  const openedCard = cards.filter((card) => card._id === id);
   return (
     <S.PopBrowseStyled>
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBroweTitle>Название задачи:{id}</S.PopBroweTitle>
+              <S.PopBroweTitle>Название задачи:</S.PopBroweTitle>
               <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{openedCard[0].title}</p>
               </div>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <S.PopBrowseStatusTitle>Статус</S.PopBrowseStatusTitle>
-              <S.PopBrowseStatusThemes>
+              <S.PopBrowseStatusTitle>
+                {openedCard[0].status}
+              </S.PopBrowseStatusTitle>
+              {/* <S.PopBrowseStatusThemes>
                 <div className="status__theme _hide">
                   <p>Без статуса</p>
                 </div>
@@ -34,13 +40,10 @@ export default function PopBrowse() {
                 <div className="status__theme _hide">
                   <p>Готово</p>
                 </div>
-              </S.PopBrowseStatusThemes>
+              </S.PopBrowseStatusThemes> */}
             </S.PopBrowseStatus>
             <S.PopBrowseWrap>
-              <S.PopBrowseForm
-                id="formBrowseCard"
-                action="#"
-              >
+              <S.PopBrowseForm id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
                   <S.FormBrowseTitle htmlFor="textArea01">
                     Описание задачи
@@ -49,7 +52,7 @@ export default function PopBrowse() {
                     name="text"
                     id="textArea01"
                     readOnly
-                    placeholder="Введите описание задачи..."
+                    placeholder={openedCard[0].description}
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
@@ -57,9 +60,11 @@ export default function PopBrowse() {
             </S.PopBrowseWrap>
             <S.ThemeDownCategories>
               <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
+              <S.OpenedCardTheme
+                $themeColor={themeNameColor[openedCard[0].topic]}
+              >
+                <p className="_orange">{openedCard[0].topic}</p>
+              </S.OpenedCardTheme>
             </S.ThemeDownCategories>
             <S.PopBrowseButtonBrowse>
               <S.ButtonGroup>
@@ -71,9 +76,7 @@ export default function PopBrowse() {
                 </S.ButtonChengeDelete>
               </S.ButtonGroup>
               <Link to={appRoutes.HOME}>
-                <S.ButtonClose>
-                  Закрыть
-                </S.ButtonClose>
+                <S.ButtonClose>Закрыть</S.ButtonClose>
               </Link>
             </S.PopBrowseButtonBrowse>
             <div className="pop-browse__btn-edit _hide">

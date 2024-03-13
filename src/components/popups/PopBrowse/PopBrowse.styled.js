@@ -1,5 +1,7 @@
 import { css, styled } from "styled-components";
 import { hover01, hover03 } from "../../../styled/common/Common.styled";
+import { themeStyles } from "../../../lib/ThemeColor";
+import { ThemeText } from "../../Card/Card.styled";
 
 export const PopBrowseStyled = styled.div`
   width: 100%;
@@ -167,7 +169,7 @@ export const FormBrowseArea = styled.textarea`
 `;
 
 export const ThemeDownCategories = styled.div`
-  display: none;
+  display: block;
   margin-bottom: 20px;
   @media screen and (max-width: 495px) {
     display: block;
@@ -221,13 +223,28 @@ export const ButtonChengeDelete = styled.button`
 `;
 
 export const ButtonClose = styled.button`
-border-radius: 4px;
+  border-radius: 4px;
   background: #565eef;
   border: none;
   outline: none;
   color: #ffffff;
   a {
-  color: #ffffff;
-}
-${hover01}
-`
+    color: #ffffff;
+  }
+  ${hover01}
+`;
+export const OpenedCardTheme = styled.div`
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-right: 7px;
+  opacity: 1;
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+  ${ThemeText} {
+    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#ffffff"};
+  }
+`;

@@ -4,7 +4,6 @@ function getUserFromLocalStorage() {
   try {
     return JSON.parse(localStorage.getItem("user"));
   } catch (error) {
-    console.log(error);
     return null;
   }
 }
