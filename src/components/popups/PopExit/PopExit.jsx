@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./PopExit.styled";
 import { appRoutes } from "../../../lib/appRoutes";
+import { useUser } from "../../../hooks/useUser";
 
-export default function PopExit({ logout }) {
+export default function PopExit() {
+  const { logout } = useUser();
+  const navigate = useNavigate();
   return (
     <S.PopExit>
       <S.PopExitContainer>
@@ -12,9 +15,14 @@ export default function PopExit({ logout }) {
           </S.PopExitTitle>
           <form className="pop-exit__form" id="formExit" action="#">
             <S.PopExitFormGroup>
-              <Link to={appRoutes.SIGNIN}>
-                <S.PopExitYes onClick={logout}>Да, выйти </S.PopExitYes>
-              </Link>
+              <S.PopExitYes
+                onClick={() => {
+                  logout();
+                  navigate(appRoutes.SIGNIN);
+                }}
+              >
+                Да, выйти{" "}
+              </S.PopExitYes>
               <Link to={appRoutes.HOME}>
                 <S.PopExitNo>Нет, остаться </S.PopExitNo>
               </Link>

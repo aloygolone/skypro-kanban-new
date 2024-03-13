@@ -2,10 +2,13 @@ import { useState } from "react";
 import PopUser from "../popups/PopUser/PopUser";
 import * as S from "./Header.styled";
 import { Container } from "../../styled/common/Common.styled";
+import PopNewCard from "../popups/PopNewCard/PopNewCard";
 
-export default function Header({ addCard }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const togglePopUser = () => setIsOpen((prevState) => !prevState);
+export default function Header() {
+  const [isOpenUser, setIsOpenUser] = useState(false);
+  const [isOpenNewCard, setIsOpenNewCard] = useState(false);
+  const togglePopUser = () => setIsOpenUser((prevState) => !prevState);
+  const togglePopNewCard = () => setIsOpenNewCard((prevState) => !prevState);
 
   return (
     <S.StyledHeader>
@@ -24,11 +27,12 @@ export default function Header({ addCard }) {
             </a>
           </S.HeaderLogo>
           <S.HeaderNav>
-            <S.HeaderBtnMainNew onClick={addCard}>
+            <S.HeaderBtnMainNew onClick={togglePopNewCard}>
               Создать новую задачу
             </S.HeaderBtnMainNew>
+            {isOpenNewCard && <PopNewCard />}
             <S.HeaderUser onClick={togglePopUser}>Ivan Ivanov</S.HeaderUser>
-            {isOpen && <PopUser />}
+            {isOpenUser && <PopUser />}
           </S.HeaderNav>
         </S.HeaderBlock>
       </Container>

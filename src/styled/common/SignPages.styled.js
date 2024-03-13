@@ -62,7 +62,7 @@ export const ModalTitleSignPage = styled.div`
   }
 `;
 
-export const ModalFormLoginSignPage = styled.form`
+export const ModalFormLoginSignPage = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
