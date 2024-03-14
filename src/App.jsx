@@ -2,13 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import { appRoutes } from "./lib/appRoutes";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import HomePage from "./pages/Home/HomePage";
-import SignIn from "./pages/SignIn/SignInPage";
-import SignUp from "./pages/SignUp/SignUpPage";
-import NotFound from "./pages/NotFound/NotFoundPage";
 import TaskPage from "./pages/Task/TaskPage";
 import ExitPage from "./pages/Exit/ExitPage";
 import "./App.css";
 import AddTaskPage from "./pages/AddTask/AddTaskPage";
+import SignInPage from "./pages/SignIn/SignInPage";
+import SignUpPage from "./pages/SignUp/SignUpPage";
+import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
 export default function App() {
   return (
@@ -20,9 +20,9 @@ export default function App() {
           <Route path={appRoutes.ADD_TASK} element={<AddTaskPage />} />
         </Route>
       </Route>
-      <Route path={appRoutes.SIGNIN} element={<SignIn />} />
-      <Route path={appRoutes.SIGNUP} element={<SignUp />} />
-      <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
+      <Route path={appRoutes.SIGNIN} element={<SignInPage />} />
+      <Route path={appRoutes.SIGNUP} element={<SignUpPage />} />
+      <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
   );
 }

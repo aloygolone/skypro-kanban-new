@@ -6,7 +6,7 @@ import { useState } from "react";
 import { signIn } from "../../api/api";
 import { useUser } from "../../hooks/useUser";
 
-export default function SignIn() {
+export default function SignInPage() {
   const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });

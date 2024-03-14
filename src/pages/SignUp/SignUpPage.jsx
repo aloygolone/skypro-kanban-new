@@ -5,7 +5,7 @@ import { appRoutes } from "../../lib/appRoutes";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
 
-export default function SignUp() {
+export default function SignUpPage() {
   const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
