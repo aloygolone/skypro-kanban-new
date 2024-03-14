@@ -25,14 +25,20 @@ export default function SignInForm({
         type="password"
         name="password"
         placeholder="Пароль"
+        isNotCorrect={isNotCorrect}
       />
-      {isNotCorrect
-        ? <NotCorrectText>Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа.</NotCorrectText>
-        : ""}
-      <S.ModalButtonEnterSignPage onClick={handleLogin}>
+      {isNotCorrect ? (
+        <NotCorrectText>
+          Введенные вами данные не распознаны. Проверьте свой логин и пароль и
+          повторите попытку входа.
+        </NotCorrectText>
+      ) : (
+        ""
+      )}
+      <S.ModalButtonEnterSignPage onClick={handleLogin} isNotCorrect={isNotCorrect}>
         Войти
       </S.ModalButtonEnterSignPage>
-      
+
       <S.ModalFormGroupSignPage>
         <p>Нужно зарегистрироваться?</p>
         <Link to={appRoutes.SIGNUP}>
