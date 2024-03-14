@@ -38,7 +38,6 @@ export async function postTodo(taskData) {
   }
 
   const data = await response.json();
-  console.log(data);
   return data;
 }
 

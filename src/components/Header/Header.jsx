@@ -4,11 +4,12 @@ import * as S from "./Header.styled";
 import { Container } from "../../styled/common/Common.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
 
 export default function Header() {
   const [isOpenUser, setIsOpenUser] = useState(false);
   const togglePopUser = () => setIsOpenUser((prevState) => !prevState);
-
+  const { user } = useUser();
 
   return (
     <S.StyledHeader>
@@ -28,11 +29,9 @@ export default function Header() {
           </S.HeaderLogo>
           <S.HeaderNav>
             <Link to={appRoutes.ADD_TASK}>
-            <S.HeaderBtnMainNew>
-              Создать новую задачу
-            </S.HeaderBtnMainNew>
+              <S.HeaderBtnMainNew>Создать новую задачу</S.HeaderBtnMainNew>
             </Link>
-            <S.HeaderUser onClick={togglePopUser}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={togglePopUser}>{user.name}</S.HeaderUser>
             {isOpenUser && <PopUser />}
           </S.HeaderNav>
         </S.HeaderBlock>

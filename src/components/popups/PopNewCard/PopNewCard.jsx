@@ -36,6 +36,7 @@ export default function PopNewCard() {
     };
     await postTodo(taskData).then((data) => {
       setCards(data.tasks);
+      console.log(data.tasks);
       navigate(appRoutes.HOME);
     });
   };

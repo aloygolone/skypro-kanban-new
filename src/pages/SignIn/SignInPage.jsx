@@ -10,6 +10,7 @@ export default function SignIn() {
   const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
+  const [isNotCorrect, setIsNotCorrect] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +23,14 @@ export default function SignIn() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    await signIn(loginData).then((data) => {
-      login(data.user);
-      navigate(appRoutes.HOME);
-    });
+    await signIn(loginData)
+      .then((data) => {
+        login(data.user);
+        navigate(appRoutes.HOME);
+      })
+      .catch(() => {
+        setIsNotCorrect(true);
+      });
   };
 
   return (
@@ -56,6 +61,9 @@ export default function SignIn() {
                 <S.ModalButtonEnterSignPage onClick={handleLogin}>
                   Войти
                 </S.ModalButtonEnterSignPage>
+                {isNotCorrect
+                  ? "Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа."
+                  : ""}
                 <S.ModalFormGroupSignPage>
                   <p>Нужно зарегистрироваться?</p>
                   <Link to={appRoutes.SIGNUP}>
