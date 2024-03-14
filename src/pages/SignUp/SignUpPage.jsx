@@ -22,6 +22,7 @@ export default function SignUpPage() {
   const [isNotFilledPassword, setIsNotFilledPassword] = useState(false);
   const [isNotCorrectEmail, setIsNotCorrectEmail] = useState(false);
   const [isNotCorrect, setIsNotCorrect] = useState(false);
+  const [isSubmitted, setIsSubMitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +31,7 @@ export default function SignUpPage() {
     setIsNotFilledName(false);
     setIsNotFilledPassword(false);
     setIsNotFilled(false);
+    setIsSubMitted(false);
 
     setLoginData({
       ...loginData,
@@ -57,7 +59,7 @@ export default function SignUpPage() {
       setIsNotCorrectEmail(true);
       return;
     }
-
+    setIsSubMitted(true);
     await signUp(loginData)
       .then((data) => {
         login(data.user);
@@ -84,6 +86,7 @@ export default function SignUpPage() {
                 <h2>Регистрация</h2>
               </S.ModalTitleSignPage>
               <SignUpForm
+                isSubmitted={isSubmitted}
                 isNotCorrectEmail={isNotCorrectEmail}
                 isNotFilled={isNotFilled}
                 isNotFilledPassword={isNotFilledPassword}

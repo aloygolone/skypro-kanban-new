@@ -102,7 +102,10 @@ export const ModalInputSignPage = styled.input`
 export const ModalButtonEnterSignPage = styled.span`
   width: 100%;
   height: 30px;
-  background-color: ${(props) => props.$isNotCorrect || props.$isNotFilled || props.$isNotCorrectEmail ? "#94A6BE" : "#565eef"};
+  background-color: ${(props) =>
+    props.$isNotCorrect || props.$isNotFilled || props.$isNotCorrectEmail || props.$isSubmitted
+      ? "#94A6BE"
+      : "#565eef"};
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -125,10 +128,14 @@ export const ModalButtonEnterSignPage = styled.span`
     justify-content: center;
   }
   &:hover {
-    ${(props) => props.$isNotFilled || props.$isNotCorrect || props.$isNotCorrectEmail ? "" : hover01}
+    ${(props) =>
+      props.$isNotFilled || props.$isNotCorrect || props.$isNotCorrectEmail || props.$isSubmitted
+        ? ""
+        : hover01}
   }
-  
-  
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+
   @media screen and (max-width: 375px) {
     height: 40px;
   }

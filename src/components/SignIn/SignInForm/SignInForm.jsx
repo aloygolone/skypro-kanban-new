@@ -7,6 +7,7 @@ export default function SignInForm({
   isNotCorrect,
   handleInputChange,
   handleLogin,
+  isSubmitted,
 }) {
   return (
     <S.ModalFormLoginSignPage>
@@ -34,7 +35,7 @@ export default function SignInForm({
       ) : (
         ""
       )}
-      <S.ModalButtonEnterSignPage onClick={handleLogin} $isNotCorrect={isNotCorrect}>
+      <S.ModalButtonEnterSignPage onClick={handleLogin} $isNotCorrect={isNotCorrect} $isSubmitted={isSubmitted}>
         Войти
       </S.ModalButtonEnterSignPage>
 

@@ -12,10 +12,12 @@ export default function SignInPage() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const [isNotCorrect, setIsNotCorrect] = useState(false);
+  const [isSubmitted, setIsSubMitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setIsNotCorrect(false);
+    setIsSubMitted(false);
 
     setLoginData({
       ...loginData,
@@ -26,15 +28,16 @@ export default function SignInPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (Object.values(loginData).includes("")) {
-      setIsNotCorrect(true);
       return;
     }
+    setIsSubMitted(true);
     await signIn(loginData)
       .then((data) => {
         login(data.user);
         navigate(appRoutes.HOME);
       })
       .catch(() => {
+        
         setIsNotCorrect(true);
       });
   };
@@ -50,6 +53,7 @@ export default function SignInPage() {
                 <h2>Вход</h2>
               </S.ModalTitleSignPage>
               <SignInForm
+              isSubmitted={isSubmitted}
                 loginData={loginData}
                 isNotCorrect={isNotCorrect}
                 handleInputChange={handleInputChange}

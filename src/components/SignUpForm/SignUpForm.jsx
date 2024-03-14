@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as S from "../../styled/common/SignPages.styled";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function SignUpForm({ handleInputChange, handleSignUp, isNotFilled, isNotFilledLogin, isNotFilledName, isNotFilledPassword, isNotCorrectEmail, isNotCorrect }) {
+export default function SignUpForm({ isSubmitted, handleInputChange, handleSignUp, isNotFilled, isNotFilledLogin, isNotFilledName, isNotFilledPassword, isNotCorrectEmail, isNotCorrect }) {
   return (
     <S.ModalFormLoginSignPage>
       <S.ModalInputSignPage
@@ -42,7 +42,7 @@ export default function SignUpForm({ handleInputChange, handleSignUp, isNotFille
       {isNotCorrect ? (<S.NotCorrectText>
         Пользователь с такими данными уже существует. Используйте свой логин для входа или зарегистрируйте новый.
       </S.NotCorrectText>) : ("")}
-      <S.ModalButtonEnterSignPage onClick={handleSignUp} $isNotFilled={isNotFilled}>
+      <S.ModalButtonEnterSignPage onClick={handleSignUp} $isNotFilled={isNotFilled} $isSubmitted={isSubmitted}>
         Зарегистрироваться
       </S.ModalButtonEnterSignPage>
       <S.ModalFormGroupSignPage>
