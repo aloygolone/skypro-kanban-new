@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as S from "../../styled/common/SignPages.styled";
 import { appRoutes } from "../../lib/appRoutes";
 
-export default function SignUpForm({ handleInputChange, handleSignUp, isNotFilled, isNotCorrect }) {
+export default function SignUpForm({ handleInputChange, handleSignUp, isNotFilled, isNotFilledLogin, isNotFilledName, isNotFilledPassword, isNotCorrectEmail }) {
   return (
     <S.ModalFormLoginSignPage>
       <S.ModalInputSignPage
@@ -11,7 +11,7 @@ export default function SignUpForm({ handleInputChange, handleSignUp, isNotFille
         name="name"
         id="first-name"
         placeholder="Имя"
-        $isNotFilled={isNotFilled}
+        $isNotFilled={isNotFilledName}
       />
       <S.ModalInputSignPage
         onChange={handleInputChange}
@@ -19,8 +19,8 @@ export default function SignUpForm({ handleInputChange, handleSignUp, isNotFille
         name="login"
         id="loginReg"
         placeholder="Эл. почта"
-        required
-        $isNotFilled={isNotFilled}
+        $isNotFilled={isNotFilledLogin}
+        $isNotCorrectEmail={isNotCorrectEmail}
       />
       <S.ModalInputSignPage
         onChange={handleInputChange}
@@ -28,18 +28,18 @@ export default function SignUpForm({ handleInputChange, handleSignUp, isNotFille
         name="password"
         id="passwordFirst"
         placeholder="Пароль"
-        $isNotFilled={isNotFilled}
+        $isNotFilled={isNotFilledPassword}
       />
       {isNotFilled ? (
       <S.NotCorrectText>
         Введенные вами данные не корректны. Чтобы завершить регистрацию,
         заполните все поля в форме.
       </S.NotCorrectText>) : ("")}
-      {isNotCorrect ? (<S.NotCorrectText>
+      {isNotCorrectEmail ? (<S.NotCorrectText>
         Введенные вами данные не корректны. Чтобы завершить регистрацию, введите
         данные корректно и повторите попытку.
       </S.NotCorrectText>) : ("")}
-      <S.ModalButtonEnterSignPage onClick={handleSignUp}>
+      <S.ModalButtonEnterSignPage onClick={handleSignUp} $isNotFilled={isNotFilled}>
         Зарегистрироваться
       </S.ModalButtonEnterSignPage>
       <S.ModalFormGroupSignPage>

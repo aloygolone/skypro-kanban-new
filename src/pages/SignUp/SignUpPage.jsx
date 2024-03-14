@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
+import { isEmailValid } from "../../components/SignUpForm/SingUpFormValidation";
 
 export default function SignUpPage() {
   const { login } = useUser();
@@ -16,11 +17,18 @@ export default function SignUpPage() {
     password: "",
   });
   const [isNotFilled, setIsNotFilled] = useState(false);
+  const [isNotFilledLogin, setIsNotFilledLogin] = useState(false);
+  const [isNotFilledName, setIsNotFilledName] = useState(false);
+  const [isNotFilledPassword, setIsNotFilledPassword] = useState(false);
+  const [isNotCorrectEmail, setIsNotCorrectEmail] = useState(false);
   const [isNotCorrect, setIsNotCorrect] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setIsNotCorrect(false);
+    setIsNotFilledLogin(false);
+    setIsNotFilledName(false);
+    setIsNotFilledPassword(false);
     setIsNotFilled(false);
 
     setLoginData({
@@ -31,8 +39,22 @@ export default function SignUpPage() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    if (loginData.login === "" || loginData.name === "" || loginData.password === "") {
-      setIsNotFilled(true)
+    if (loginData.name === "") {
+      setIsNotFilledName(true);
+    }
+    if (loginData.login === "") {
+      setIsNotFilledLogin(true);
+    }
+    if (loginData.password === "") {
+      setIsNotFilledPassword(true);
+    }
+    if (Object.values(loginData).includes("")) {
+      setIsNotFilled(true);
+      return;
+    }
+
+    if (!isEmailValid(loginData.login)) {
+      setIsNotCorrectEmail(true);
       return;
     }
 
@@ -40,6 +62,11 @@ export default function SignUpPage() {
       .then((data) => {
         login(data.user);
         navigate(appRoutes.HOME);
+        setIsNotCorrect(false);
+        setIsNotFilledLogin(false);
+        setIsNotFilledName(false);
+        setIsNotFilledPassword(false);
+        setIsNotFilled(false);
       })
       .catch(() => {
         setIsNotCorrect(true);
@@ -57,7 +84,11 @@ export default function SignUpPage() {
                 <h2>Регистрация</h2>
               </S.ModalTitleSignPage>
               <SignUpForm
+                isNotCorrectEmail={isNotCorrectEmail}
                 isNotFilled={isNotFilled}
+                isNotFilledPassword={isNotFilledPassword}
+                isNotFilledName={isNotFilledName}
+                isNotFilledLogin={isNotFilledLogin}
                 isNotCorrect={isNotCorrect}
                 handleInputChange={handleInputChange}
                 handleSignUp={handleSignUp}

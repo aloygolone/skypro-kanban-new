@@ -76,11 +76,7 @@ export const ModalInputSignPage = styled.input`
   min-width: 100%;
   border-radius: 8px;
   border: ${(props) =>
-    props.$isNotCorrect
-      ? "0.7px solid #F84D4D"
-      : "0.7px solid rgba(148, 166, 190, 0.4)"};
-  border: ${(props) =>
-    props.$isNotFilled
+    props.$isNotCorrect || props.$isNotFilled || props.$isNotCorrectEmail
       ? "0.7px solid #F84D4D"
       : "0.7px solid rgba(148, 166, 190, 0.4)"};
   outline: none;
@@ -106,7 +102,7 @@ export const ModalInputSignPage = styled.input`
 export const ModalButtonEnterSignPage = styled.span`
   width: 100%;
   height: 30px;
-  background-color: ${(props) => props.$isNotCorrect ? "#94A6BE" : "#565eef"};
+  background-color: ${(props) => props.$isNotCorrect || props.$isNotFilled || props.$isNotCorrectEmail ? "#94A6BE" : "#565eef"};
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -129,8 +125,10 @@ export const ModalButtonEnterSignPage = styled.span`
     justify-content: center;
   }
   &:hover {
-    ${(props) => props.$isNotCorrect ? "" : hover01}
+    ${(props) => props.$isNotFilled || props.$isNotCorrect || props.$isNotCorrectEmail ? "" : hover01}
   }
+  
+  
   @media screen and (max-width: 375px) {
     height: 40px;
   }

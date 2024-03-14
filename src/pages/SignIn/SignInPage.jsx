@@ -25,6 +25,10 @@ export default function SignInPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (Object.values(loginData).includes("")) {
+      setIsNotCorrect(true);
+      return;
+    }
     await signIn(loginData)
       .then((data) => {
         login(data.user);
