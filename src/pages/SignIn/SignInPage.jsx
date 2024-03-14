@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "../../styled/common/SignPages.styled";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 import { useState } from "react";
 import { signIn } from "../../api/api";
 import { useUser } from "../../hooks/useUser";
+import SignInForm from "../../components/SignIn/SignInForm/SignInForm";
 
 export default function SignInPage() {
   const { login } = useUser();
@@ -43,34 +44,12 @@ export default function SignInPage() {
               <S.ModalTitleSignPage>
                 <h2>Вход</h2>
               </S.ModalTitleSignPage>
-              <S.ModalFormLoginSignPage>
-                <S.ModalInputSignPage
-                  value={loginData.login}
-                  onChange={handleInputChange}
-                  type="text"
-                  name="login"
-                  placeholder="Эл. почта"
-                />
-                <S.ModalInputSignPage
-                  value={loginData.password}
-                  onChange={handleInputChange}
-                  type="password"
-                  name="password"
-                  placeholder="Пароль"
-                />
-                <S.ModalButtonEnterSignPage onClick={handleLogin}>
-                  Войти
-                </S.ModalButtonEnterSignPage>
-                {isNotCorrect
-                  ? "Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа."
-                  : ""}
-                <S.ModalFormGroupSignPage>
-                  <p>Нужно зарегистрироваться?</p>
-                  <Link to={appRoutes.SIGNUP}>
-                    <span>Регистрируйтесь здесь</span>
-                  </Link>
-                </S.ModalFormGroupSignPage>
-              </S.ModalFormLoginSignPage>
+              <SignInForm
+                loginData={loginData}
+                isNotCorrect={isNotCorrect}
+                handleInputChange={handleInputChange}
+                handleLogin={handleLogin}
+              />
             </S.ModalBlockSignPage>
           </S.ModalSignPage>
         </S.ContainerSignPage>
