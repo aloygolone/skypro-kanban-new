@@ -68,9 +68,7 @@ export const ModalFormLoginSignPage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  input:first-child {
-    margin-bottom: 7px;
-  }
+  gap: 6px;
 `;
 
 export const ModalInputSignPage = styled.input`
@@ -78,7 +76,11 @@ export const ModalInputSignPage = styled.input`
   min-width: 100%;
   border-radius: 8px;
   border: ${(props) =>
-    props.isNotCorrect
+    props.$isNotCorrect
+      ? "0.7px solid #F84D4D"
+      : "0.7px solid rgba(148, 166, 190, 0.4)"};
+  border: ${(props) =>
+    props.$isNotFilled
       ? "0.7px solid #F84D4D"
       : "0.7px solid rgba(148, 166, 190, 0.4)"};
   outline: none;
@@ -104,7 +106,7 @@ export const ModalInputSignPage = styled.input`
 export const ModalButtonEnterSignPage = styled.span`
   width: 100%;
   height: 30px;
-  background-color: ${(props) => props.isNotCorrect ? "#94A6BE" : "#565eef"};
+  background-color: ${(props) => props.$isNotCorrect ? "#94A6BE" : "#565eef"};
   border-radius: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -127,7 +129,7 @@ export const ModalButtonEnterSignPage = styled.span`
     justify-content: center;
   }
   &:hover {
-    ${(props) => props.isNotCorrect ? "" : hover01}
+    ${(props) => props.$isNotCorrect ? "" : hover01}
   }
   @media screen and (max-width: 375px) {
     height: 40px;
@@ -147,4 +149,15 @@ export const ModalFormGroupSignPage = styled.div`
   a {
     text-decoration: underline;
   }
+`;
+
+export const NotCorrectText = styled.div`
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #f84d4d;
+  margin-top: 6px;
 `;

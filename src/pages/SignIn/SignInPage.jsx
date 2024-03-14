@@ -15,6 +15,7 @@ export default function SignInPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setIsNotCorrect(false);
 
     setLoginData({
       ...loginData,

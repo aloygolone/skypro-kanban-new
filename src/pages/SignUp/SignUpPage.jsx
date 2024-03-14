@@ -1,9 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signUp } from "../../api/api";
 import * as S from "../../styled/common/SignPages.styled";
 import { appRoutes } from "../../lib/appRoutes";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
+import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 
 export default function SignUpPage() {
   const { login } = useUser();
@@ -13,9 +15,13 @@ export default function SignUpPage() {
     name: "",
     password: "",
   });
+  const [isNotFilled, setIsNotFilled] = useState(false);
+  const [isNotCorrect, setIsNotCorrect] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setIsNotCorrect(false);
+    setIsNotFilled(false);
 
     setLoginData({
       ...loginData,
@@ -25,55 +31,41 @@ export default function SignUpPage() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    await signUp(loginData).then((data) => {
-      login(data.user);
-      navigate(appRoutes.HOME);
-    });
+    if (loginData.login === "" || loginData.name === "" || loginData.password === "") {
+      setIsNotFilled(true)
+      return;
+    }
+
+    await signUp(loginData)
+      .then((data) => {
+        login(data.user);
+        navigate(appRoutes.HOME);
+      })
+      .catch(() => {
+        setIsNotCorrect(true);
+      });
   };
 
   return (
-    <S.WrapperSignPage>
-      <S.ContainerSignPage>
-        <S.ModalSignPage>
-          <S.ModalBlockSignPage>
-            <S.ModalTitleSignPage>
-              <h2>Регистрация</h2>
-            </S.ModalTitleSignPage>
-            <S.ModalFormLoginSignPage>
-              <S.ModalInputSignPage
-                onChange={handleInputChange}
-                type="text"
-                name="name"
-                id="first-name"
-                placeholder="Имя"
+    <>
+      <GlobalStyleSignPage />
+      <S.WrapperSignPage>
+        <S.ContainerSignPage>
+          <S.ModalSignPage>
+            <S.ModalBlockSignPage>
+              <S.ModalTitleSignPage>
+                <h2>Регистрация</h2>
+              </S.ModalTitleSignPage>
+              <SignUpForm
+                isNotFilled={isNotFilled}
+                isNotCorrect={isNotCorrect}
+                handleInputChange={handleInputChange}
+                handleSignUp={handleSignUp}
               />
-              <S.ModalInputSignPage
-                onChange={handleInputChange}
-                type="text"
-                name="login"
-                id="loginReg"
-                placeholder="Эл. почта"
-              />
-              <S.ModalInputSignPage
-                onChange={handleInputChange}
-                type="password"
-                name="password"
-                id="passwordFirst"
-                placeholder="Пароль"
-              />
-              <S.ModalButtonEnterSignPage onClick={handleSignUp}>
-                Зарегистрироваться
-              </S.ModalButtonEnterSignPage>
-              <S.ModalFormGroupSignPage>
-                <p>
-                  Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
-                </p>
-              </S.ModalFormGroupSignPage>
-            </S.ModalFormLoginSignPage>
-          </S.ModalBlockSignPage>
-        </S.ModalSignPage>
-      </S.ContainerSignPage>
-    </S.WrapperSignPage>
+            </S.ModalBlockSignPage>
+          </S.ModalSignPage>
+        </S.ContainerSignPage>
+      </S.WrapperSignPage>
+    </>
   );
 }
