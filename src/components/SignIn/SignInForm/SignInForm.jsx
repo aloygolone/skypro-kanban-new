@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import * as S from "../../../styled/common/SignPages.styled";
 import { appRoutes } from "../../../lib/appRoutes";
+import { NotCorrectText } from "./SignInForm.styled";
 
 export default function SignInForm({
   loginData,
@@ -16,6 +17,7 @@ export default function SignInForm({
         type="text"
         name="login"
         placeholder="Эл. почта"
+        isNotCorrect={isNotCorrect}
       />
       <S.ModalInputSignPage
         value={loginData.password}
@@ -24,12 +26,13 @@ export default function SignInForm({
         name="password"
         placeholder="Пароль"
       />
+      {isNotCorrect
+        ? <NotCorrectText>Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа.</NotCorrectText>
+        : ""}
       <S.ModalButtonEnterSignPage onClick={handleLogin}>
         Войти
       </S.ModalButtonEnterSignPage>
-      {isNotCorrect
-        ? "Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа."
-        : ""}
+      
       <S.ModalFormGroupSignPage>
         <p>Нужно зарегистрироваться?</p>
         <Link to={appRoutes.SIGNUP}>
