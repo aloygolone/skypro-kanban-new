@@ -4,105 +4,131 @@ import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
 import { useTasks } from "../../../hooks/useTasks";
 import { themeNameColor } from "../../../lib/ThemeColor";
+import { GlobalStyle } from "../../../styled/global/Global.styled";
+import { useState } from "react";
+import { CalendarStyled, TitleDate } from "../../Calendar/Calendar.styled";
+import { statusList } from "../../../lib/statusList";
+import { FormNewInputArea } from "../PopNewCard/PopNewCard.styled";
 
 export default function PopBrowse() {
   const { id } = useParams();
   const { cards } = useTasks();
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isSelectedStatus, setIsSelectedStatus] = useState();
   const openedCard = cards.filter((card) => card._id === id);
+  const selectedCardData = {
+    title: openedCard[0].title,
+    description: openedCard[0].description,
+    topic: openedCard[0].topic,
+    status: openedCard[0].status,
+  };
+  const [editTask, setEditTask] = useState(selectedCardData);
+
+  const handleEditMode = () => {
+    setIsEditMode(true);
+  };
+
+  const handleDiscard = () => {
+    setIsEditMode(false);
+    setEditTask(selectedCardData);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setEditTask({
+      ...editTask,
+      [name]: value,
+    });
+  };
+
   return (
-    <S.PopBrowseStyled>
-      <S.PopBrowseContainer>
-        <S.PopBrowseBlock>
-          <S.PopBrowseContent>
-            <S.PopBrowseTopBlock>
-              <S.PopBroweTitle>Название задачи:</S.PopBroweTitle>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{openedCard[0].title}</p>
-              </div>
-            </S.PopBrowseTopBlock>
-            <S.PopBrowseStatus>
-              <S.PopBrowseStatusTitle>
-                {openedCard[0].status}
-              </S.PopBrowseStatusTitle>
-              {/* <S.PopBrowseStatusThemes>
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </S.PopBrowseStatusThemes> */}
-            </S.PopBrowseStatus>
-            <S.PopBrowseWrap>
-              <S.PopBrowseForm id="formBrowseCard" action="#">
-                <S.FormBrowseBlock>
-                  <S.FormBrowseTitle htmlFor="textArea01">
-                    Описание задачи
-                  </S.FormBrowseTitle>
-                  <S.FormBrowseArea
-                    name="text"
-                    id="textArea01"
-                    readOnly
-                    placeholder={openedCard[0].description}
-                  ></S.FormBrowseArea>
-                </S.FormBrowseBlock>
-              </S.PopBrowseForm>
-              <Calendar />
-            </S.PopBrowseWrap>
-            <S.ThemeDownCategories>
-              <S.PopBrowseStatusTitle>Категория</S.PopBrowseStatusTitle>
-              <S.OpenedCardTheme
-                $themeColor={themeNameColor[openedCard[0].topic]}
-              >
-                <p className="_orange">{openedCard[0].topic}</p>
-              </S.OpenedCardTheme>
-            </S.ThemeDownCategories>
-            <S.PopBrowseButtonBrowse>
-              <S.ButtonGroup>
-                <S.ButtonChengeDelete>
-                  <a href="#">Редактировать задачу</a>
-                </S.ButtonChengeDelete>
-                <S.ButtonChengeDelete>
-                  <a href="#">Удалить задачу</a>
-                </S.ButtonChengeDelete>
-              </S.ButtonGroup>
-              <Link to={appRoutes.HOME}>
-                <S.ButtonClose>Закрыть</S.ButtonClose>
-              </Link>
-            </S.PopBrowseButtonBrowse>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
+    <>
+      <GlobalStyle />
+      <S.PopBrowseStyled>
+        <S.PopBrowseContainer>
+          <S.PopBrowseBlock>
+            <S.PopBrowseContent>
+              <S.PopBrowseTopBlock>
+                <S.PopBrowseTitle>{openedCard[0].title}</S.PopBrowseTitle>
+                <S.OpenedCardTheme
+                  $themeColor={themeNameColor[openedCard[0].topic]}
                 >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <Link to={appRoutes.HOME}>
-                <span className="btn-edit__close _btn-bg _hover01">
-                  Закрыть
-                </span>
-              </Link>
-            </div>
-          </S.PopBrowseContent>
-        </S.PopBrowseBlock>
-      </S.PopBrowseContainer>
-    </S.PopBrowseStyled>
+                  {openedCard[0].topic}
+                </S.OpenedCardTheme>
+              </S.PopBrowseTopBlock>
+              <S.PopBrowseStatus>
+                <S.PopBrowseStatusTitle>Статус</S.PopBrowseStatusTitle>
+
+                <S.PopBrowseStatusThemes>
+                  {isEditMode ? (
+                    statusList.map((el) => (
+                      <S.PopBrowseStatusTheme key={el}>
+                        {el}
+                      </S.PopBrowseStatusTheme>
+                    ))
+                  ) : (
+                    <S.SelectedStatus>
+                      <p>{openedCard[0].status}</p>
+                    </S.SelectedStatus>
+                  )}
+                </S.PopBrowseStatusThemes>
+              </S.PopBrowseStatus>
+              <S.PopBrowseWrap>
+                <S.PopBrowseForm>
+                  <S.FormBrowseBlock>
+                    <S.FormBrowseTitle htmlFor="textArea01">
+                      Описание задачи
+                    </S.FormBrowseTitle>
+                    {isEditMode ? (
+                      <FormNewInputArea
+                        type="textarea"
+                        name="description"
+                        value={editTask.description}
+                        onChange={handleInputChange}
+                      ></FormNewInputArea>
+                    ) : (
+                      <S.FormBrowseArea
+                        name="text"
+                        id="textArea01"
+                        readOnly
+                        placeholder={openedCard[0].description}
+                      ></S.FormBrowseArea>
+                    )}
+                  </S.FormBrowseBlock>
+                </S.PopBrowseForm>
+                <CalendarStyled>
+                  <TitleDate htmlFor="formTitle">Даты</TitleDate>
+                  <Calendar selectedDate={openedCard[0].date} />
+                </CalendarStyled>
+              </S.PopBrowseWrap>
+              <S.ThemeDownCategories></S.ThemeDownCategories>
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  {isEditMode ? (
+                    <>
+                      <S.ButtonCloseSave>Сохранить</S.ButtonCloseSave>
+                      <S.ButtonChangeDelete onClick={handleDiscard}>
+                        Отменить
+                      </S.ButtonChangeDelete>
+                    </>
+                  ) : (
+                    <S.ButtonChangeDelete>
+                      <a onClick={handleEditMode}>Редактировать задачу</a>
+                    </S.ButtonChangeDelete>
+                  )}
+                  <S.ButtonChangeDelete>
+                    <a href="#">Удалить задачу</a>
+                  </S.ButtonChangeDelete>
+                </S.ButtonGroup>
+                <Link to={appRoutes.HOME}>
+                  <S.ButtonCloseSave>Закрыть</S.ButtonCloseSave>
+                </Link>
+              </S.PopBrowseButtonBrowse>
+            </S.PopBrowseContent>
+          </S.PopBrowseBlock>
+        </S.PopBrowseContainer>
+      </S.PopBrowseStyled>
+    </>
   );
 }

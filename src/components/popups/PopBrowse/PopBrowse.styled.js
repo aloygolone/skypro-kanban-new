@@ -1,7 +1,6 @@
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 import { hover01, hover03 } from "../../../styled/common/Common.styled";
 import { themeStyles } from "../../../lib/ThemeColor";
-import { ThemeText } from "../../Card/Card.styled";
 
 export const PopBrowseStyled = styled.div`
   width: 100%;
@@ -55,19 +54,19 @@ export const PopBrowseBlock = styled.div`
 `;
 
 export const PopBrowseContent = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   text-align: left;
   opacity: 1;
-  margin-bottom: 20px;
 `;
 
 export const PopBrowseTopBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
 `;
-export const PopBroweTitle = styled.h3`
+export const PopBrowseTitle = styled.h3`
   color: #000;
   font-size: 20px;
   font-weight: 600;
@@ -75,40 +74,47 @@ export const PopBroweTitle = styled.h3`
 `;
 
 export const PopBrowseStatus = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-bottom: 11px;
+  width: 570px;
+  height: 60px;
+  gap: 14px;
 `;
 export const PopBrowseStatusTitle = styled.p`
-  margin-bottom: 14px;
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
 `;
 
-export const PopBrowseStatusThemes = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-`;
-
-export const PopBrowseStatusTheme = css`
+export const PopBrowseStatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  p {
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: -0.14px;
-  }
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
 `;
+
+export const SelectedStatus = styled(PopBrowseStatusTheme)`
+background: #94A6BE;
+color: #FFFFFF;
+`
+
+export const PopBrowseStatusThemes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 export const PopBrowseWrap = styled.div`
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  width: 590px;
   @media screen and (max-width: 660px) {
     display: block;
   }
@@ -127,6 +133,9 @@ export const PopBrowseForm = styled.form`
 export const FormBrowseBlock = styled.div`
   display: flex;
   flex-direction: column;
+  textarea {
+    resize: vertical;
+  }
 `;
 export const FormBrowseTitle = styled.label`
   color: #000;
@@ -136,8 +145,12 @@ export const FormBrowseTitle = styled.label`
 `;
 
 export const FormBrowseArea = styled.textarea`
+font-family: 'Roboto';
   max-width: 370px;
-  width: 100%;
+  margin-top: 14px;
+  height: 200px;
+  min-height: 100px;
+  max-height: 45vh;
   outline: none;
   padding: 14px;
   background: #eaeef6;
@@ -210,7 +223,7 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const ButtonChengeDelete = styled.button`
+export const ButtonChangeDelete = styled.button`
   border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
@@ -222,7 +235,7 @@ export const ButtonChengeDelete = styled.button`
   ${hover03}
 `;
 
-export const ButtonClose = styled.button`
+export const ButtonCloseSave = styled.button`
   border-radius: 4px;
   background: #565eef;
   border: none;
@@ -234,6 +247,12 @@ export const ButtonClose = styled.button`
   ${hover01}
 `;
 export const OpenedCardTheme = styled.div`
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
   display: inline-block;
   width: auto;
   height: 30px;
@@ -244,7 +263,5 @@ export const OpenedCardTheme = styled.div`
   background-color: ${({ $themeColor }) =>
     themeStyles[$themeColor]?.backgroundColor || "#94a6be"};
 
-  ${ThemeText} {
-    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#ffffff"};
-  }
+  color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#ffffff"};
 `;
