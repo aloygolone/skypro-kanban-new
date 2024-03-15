@@ -1,4 +1,5 @@
 import { css, styled } from "styled-components";
+import { themeStyles } from "../../../lib/ThemeColor";
 
 export const PopNewCardStyled = styled.div`
   display: block;
@@ -201,7 +202,6 @@ export const CategoriesThemes = css`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 0.4;
   font-family: "Roboto";
   font-size: 14px;
   font-weight: 600;
@@ -210,22 +210,13 @@ export const CategoriesThemes = css`
   text-align: center;
 `;
 
-export const ThemeWebDesign = styled.div`
+export const CardThemeToSelect = styled.div`
   ${CategoriesThemes}
-  background-color: #FFE4C2;
-  color: #ff6d00;
-`;
 
-export const ThemeResearch = styled.div`
-  ${CategoriesThemes}
-  background-color: #B4FDD1;
-  color: #06b16e;
-`;
-
-export const ThemeCopywriting = styled.div`
-  ${CategoriesThemes}
-  background-color: #E9D4FF;
-  color: #9a48f1;
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.backgroundColor};
+  color: ${({ $themeColor }) => themeStyles[$themeColor]?.color};
+  opacity: ${($selected) => themeStyles[$selected] ? ("1") : ("0.4")}
 `;
 
 export const FormNewSubmit = styled.button`
