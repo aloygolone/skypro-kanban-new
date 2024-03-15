@@ -210,19 +210,19 @@ export const CategoriesThemes = css`
   text-align: center;
 `;
 
-export const ThemeWebDesign = styled.p`
+export const ThemeWebDesign = styled.div`
   ${CategoriesThemes}
   background-color: #FFE4C2;
   color: #ff6d00;
 `;
 
-export const ThemeResearch = styled.label`
+export const ThemeResearch = styled.div`
   ${CategoriesThemes}
   background-color: #B4FDD1;
   color: #06b16e;
 `;
 
-export const ThemeCopywriting = styled.label`
+export const ThemeCopywriting = styled.div`
   ${CategoriesThemes}
   background-color: #E9D4FF;
   color: #9a48f1;

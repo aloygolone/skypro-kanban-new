@@ -137,7 +137,7 @@ export const FormBrowseBlock = styled.div`
     resize: vertical;
   }
 `;
-export const FormBrowseTitle = styled.label`
+export const FormBrowseTitle = styled.div`
   color: #000;
   font-size: 14px;
   font-weight: 600;
