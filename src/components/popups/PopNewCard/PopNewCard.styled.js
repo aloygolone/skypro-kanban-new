@@ -39,7 +39,6 @@ export const PopNewCardContainer = styled.div`
 `;
 
 export const PopNewCardBlock = styled.div`
-  display: block;
   margin: 0 auto;
   background-color: #ffffff;
   max-width: 630px;
@@ -59,9 +58,13 @@ export const PopNewCardBlock = styled.div`
 export const PopNewCardContent = styled.div`
   display: block;
   text-align: left;
+  max-width: 620px;
 `;
 
 export const PopNewCardTitle = styled.h3`
+  font-family: "Roboto";
+  letter-spacing: 0px;
+  text-align: left;
   color: #000;
   font-size: 20px;
   font-weight: 600;
@@ -82,17 +85,17 @@ export const PopNewCardClose = styled.span`
 
 export const PopNewCardWrap = styled.div`
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  width: 590px;
   @media screen and (max-width: 660px) {
     display: block;
   }
 `;
 
 export const PopNewCardForm = styled.form`
-  max-width: 370px;
-  width: 100%;
-  display: block;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
   @media screen and (max-width: 495px) {
     max-width: 100%;
@@ -104,13 +107,17 @@ export const PopNewCardForm = styled.form`
 export const FormNewBlock = styled.div`
   display: flex;
   flex-direction: column;
+  textarea {
+    resize: vertical;
+  }
 `;
 
 export const FormNewInputArea = styled.textarea`
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
-  width: 100%;
+  min-height: 100px;
+  max-height: 55vh;
   outline: none;
   padding: 14px;
   background: transparent;
@@ -141,7 +148,8 @@ export const FormNewInputArea = styled.textarea`
 
 export const FormNewInput = styled.input`
   margin: 20px 0;
-  width: 100%;
+  min-width: 290px;
+  resize: none;
   outline: none;
   padding: 14px;
   background: transparent;
@@ -191,20 +199,22 @@ export const CategoriesThemes = css`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 1;
+  opacity: 0.4;
   p {
+    font-family: "Roboto";
     font-size: 14px;
     font-weight: 600;
     line-height: 14px;
     white-space: nowrap;
-    opacity: 1;
+    text-align: center;
   }
 `;
 
-export const ThemeWebDesign = styled.label`
+export const ThemeWebDesign = styled.p`
   ${CategoriesThemes}
   background-color: #FFE4C2;
   color: #ff6d00;
+  opacity: ${(props) => props.selectedWebDesign ? ("1") : ("0.4")}
 `;
 
 export const ThemeResearch = styled.label`
@@ -235,4 +245,8 @@ export const FormNewSubmit = styled.button`
     width: 100%;
     height: 40px;
   }
+`;
+
+export const ThemeInputs = styled.input`
+  display: none;
 `;
