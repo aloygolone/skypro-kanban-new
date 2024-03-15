@@ -25,13 +25,13 @@ export default function PopNewCard() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
+    console.log(newTask.topic);
+
     setNewTask({
       ...newTask,
       [name]: value,
     });
   };
-
-
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -104,10 +104,15 @@ export default function PopNewCard() {
                     value="Web Design"
                     onChange={handleInputChange}
                   />
-                  <S.CardThemeToSelect $themeColor={themeNameColor["Web Design"]} htmlFor="radio1">
+                  <S.CardThemeToSelect
+                    $isChecked={newTask.topic === "Web Design"}
+                    $themeColor={themeNameColor["Web Design"]}
+                    htmlFor="radio1"
+                  >
                     Web Design
                   </S.CardThemeToSelect>
 
+                  {console.log(newTask.topic)}
                   <S.ThemeInputs
                     type="radio"
                     id="radio2"
@@ -115,7 +120,13 @@ export default function PopNewCard() {
                     value="Research"
                     onChange={handleInputChange}
                   />
-                  <S.CardThemeToSelect $themeColor={themeNameColor["Research"]} htmlFor="radio2">Research</S.CardThemeToSelect>
+                  <S.CardThemeToSelect
+                    $themeColor={themeNameColor["Research"]}
+                    htmlFor="radio2"
+                    $isChecked={newTask.topic === "Research"}
+                  >
+                    Research
+                  </S.CardThemeToSelect>
                   <S.ThemeInputs
                     type="radio"
                     id="radio3"
@@ -123,7 +134,11 @@ export default function PopNewCard() {
                     value="Copywriting"
                     onChange={handleInputChange}
                   />
-                  <S.CardThemeToSelect $themeColor={themeNameColor["Copywriting"]} htmlFor="radio3">
+                  <S.CardThemeToSelect
+                    $themeColor={themeNameColor["Copywriting"]}
+                    htmlFor="radio3"
+                    $isChecked={newTask.topic === "Copywriting"}
+                  >
                     Copywriting
                   </S.CardThemeToSelect>
                 </S.PopNewCategoriesThemes>

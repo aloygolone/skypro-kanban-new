@@ -42,14 +42,18 @@ export async function postTodo(taskData) {
 }
 
 // Изменить задачу
-export async function putTodo({ text, id, token }) {
-  const response = await fetch(kanbanHost + `/${id}`, {
+export async function putTodo(taskData) {
+  const response = await fetch(kanbanHost + `/${taskData.id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${taskData.token}`,
     },
     method: "PUT",
     body: JSON.stringify({
-      text,
+      title: taskData.title,
+      topic: taskData.topic,
+      status: taskData.status,
+      description: taskData.description,
+      date: taskData.date,
     }),
   });
 
@@ -62,14 +66,14 @@ export async function putTodo({ text, id, token }) {
 }
 
 // Удалить задачу
-export async function deleteTodo({ text, id, token }) {
-  const response = await fetch(kanbanHost + `/${id}`, {
+export async function deleteTodo(taskData) {
+  const response = await fetch(kanbanHost + `/${taskData.id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${taskData.token}`,
     },
     method: "DELETE",
     body: JSON.stringify({
-      text,
+      _id: taskData.id,
     }),
   });
 

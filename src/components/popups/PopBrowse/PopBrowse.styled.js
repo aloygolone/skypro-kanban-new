@@ -88,7 +88,7 @@ export const PopBrowseStatusTitle = styled.p`
   line-height: 1;
 `;
 
-export const PopBrowseStatusTheme = styled.div`
+export const PopBrowseStatusTheme = styled.label`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
@@ -100,10 +100,15 @@ export const PopBrowseStatusTheme = styled.div`
   letter-spacing: -0.14px;
 `;
 
+export const NewSelectedStatus = styled(PopBrowseStatusTheme)`
+  background: ${({ $isChecked }) => ($isChecked ? "#94a6be" : "")};
+  color: ${({ $isChecked }) => ($isChecked ? "#FFFFFF" : "#94a6be")};
+`;
+
 export const SelectedStatus = styled(PopBrowseStatusTheme)`
-background: #94A6BE;
-color: #FFFFFF;
-`
+  background-color: #94a6be;
+  color: #FFFFFF;
+`;
 
 export const PopBrowseStatusThemes = styled.div`
   display: flex;
@@ -145,7 +150,7 @@ export const FormBrowseTitle = styled.div`
 `;
 
 export const FormBrowseArea = styled.textarea`
-font-family: 'Roboto';
+  font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
   height: 200px;

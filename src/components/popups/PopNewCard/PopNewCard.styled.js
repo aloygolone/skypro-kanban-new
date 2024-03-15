@@ -210,15 +210,16 @@ export const CategoriesThemes = css`
   text-align: center;
 `;
 
-export const CardThemeToSelect = styled.div`
+export const CardThemeToSelect = styled.label`
   ${CategoriesThemes}
 
   background-color: ${({ $themeColor }) =>
     themeStyles[$themeColor]?.backgroundColor};
   color: ${({ $themeColor }) => themeStyles[$themeColor]?.color};
-  opacity: ${($selected) => themeStyles[$selected] ? ("1") : ("0.4")}
+  opacity: ${({ $isChecked }) => ($isChecked ? "1" : "0.4")};
 `;
 
+export const RadioLabel = styled.label``;
 export const FormNewSubmit = styled.button`
   width: 132px;
   height: 30px;

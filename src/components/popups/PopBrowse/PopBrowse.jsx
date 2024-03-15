@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
@@ -8,20 +8,26 @@ import { GlobalStyle } from "../../../styled/global/Global.styled";
 import { useState } from "react";
 import { CalendarStyled, TitleDate } from "../../Calendar/Calendar.styled";
 import { statusList } from "../../../lib/statusList";
-import { FormNewInputArea } from "../PopNewCard/PopNewCard.styled";
+import { FormNewInputArea, ThemeInputs } from "../PopNewCard/PopNewCard.styled";
+import { useUser } from "../../../hooks/useUser";
+import { deleteTodo, putTodo } from "../../../api/api";
 
 export default function PopBrowse() {
+  const { user } = useUser();
   const { id } = useParams();
-  const { cards } = useTasks();
+  const { cards, setCards } = useTasks();
   const [isEditMode, setIsEditMode] = useState(false);
-  const [isSelectedStatus, setIsSelectedStatus] = useState();
+  const navigate = useNavigate();
+
   const openedCard = cards.filter((card) => card._id === id);
   const selectedCardData = {
     title: openedCard[0].title,
     description: openedCard[0].description,
     topic: openedCard[0].topic,
     status: openedCard[0].status,
+    date: openedCard[0].date,
   };
+  const [selectedDate, setSelectedDate] = useState(selectedCardData.date);
   const [editTask, setEditTask] = useState(selectedCardData);
 
   const handleEditMode = () => {
@@ -39,6 +45,32 @@ export default function PopBrowse() {
     setEditTask({
       ...editTask,
       [name]: value,
+    });
+  };
+
+  const handleFormSave = async (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...editTask,
+      token: user.token,
+      id: id,
+    };
+    await putTodo(taskData).then((data) => {
+      setCards(data.tasks);
+      navigate(appRoutes.HOME);
+    });
+  };
+
+  const handleFormDelete = async (e) => {
+    e.preventDefault();
+    const taskData = {
+      ...editTask,
+      token: user.token,
+      id: id,
+    };
+    await deleteTodo(taskData).then((data) => {
+      setCards(data.tasks);
+      navigate(appRoutes.HOME);
     });
   };
 
@@ -62,14 +94,26 @@ export default function PopBrowse() {
 
                 <S.PopBrowseStatusThemes>
                   {isEditMode ? (
-                    statusList.map((el) => (
-                      <S.PopBrowseStatusTheme key={el}>
-                        {el}
-                      </S.PopBrowseStatusTheme>
+                    statusList.map((el, index) => (
+                      <>
+                        <ThemeInputs
+                          type="radio"
+                          id={`radio${index}`}
+                          name="status"
+                          value={el}
+                          onChange={handleInputChange}
+                        />
+                        <S.NewSelectedStatus
+                          $isChecked={editTask.status === el}
+                          htmlFor={`radio${index}`}
+                        >
+                          {el}
+                        </S.NewSelectedStatus>
+                      </>
                     ))
                   ) : (
                     <S.SelectedStatus>
-                      <p>{openedCard[0].status}</p>
+                      {selectedCardData.status}
                     </S.SelectedStatus>
                   )}
                 </S.PopBrowseStatusThemes>
@@ -99,7 +143,14 @@ export default function PopBrowse() {
                 </S.PopBrowseForm>
                 <CalendarStyled>
                   <TitleDate htmlFor="formTitle">Даты</TitleDate>
-                  <Calendar selectedDate={openedCard[0].date} />
+                  {isEditMode ? (
+                    <Calendar
+                      selectedDate={selectedDate}
+                      setSelectedDate={setSelectedDate}
+                    />
+                  ) : (
+                    <Calendar selectedDate={openedCard[0].date} />
+                  )}
                 </CalendarStyled>
               </S.PopBrowseWrap>
               <S.ThemeDownCategories></S.ThemeDownCategories>
@@ -107,7 +158,9 @@ export default function PopBrowse() {
                 <S.ButtonGroup>
                   {isEditMode ? (
                     <>
-                      <S.ButtonCloseSave>Сохранить</S.ButtonCloseSave>
+                      <S.ButtonCloseSave onClick={handleFormSave}>
+                        Сохранить
+                      </S.ButtonCloseSave>
                       <S.ButtonChangeDelete onClick={handleDiscard}>
                         Отменить
                       </S.ButtonChangeDelete>
@@ -117,8 +170,8 @@ export default function PopBrowse() {
                       <a onClick={handleEditMode}>Редактировать задачу</a>
                     </S.ButtonChangeDelete>
                   )}
-                  <S.ButtonChangeDelete>
-                    <a href="#">Удалить задачу</a>
+                  <S.ButtonChangeDelete onClick={handleFormDelete}>
+                    Удалить задачу
                   </S.ButtonChangeDelete>
                 </S.ButtonGroup>
                 <Link to={appRoutes.HOME}>
