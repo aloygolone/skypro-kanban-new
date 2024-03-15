@@ -200,21 +200,18 @@ export const CategoriesThemes = css`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
-  p {
-    font-family: "Roboto";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
-    white-space: nowrap;
-    text-align: center;
-  }
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+  text-align: center;
 `;
 
 export const ThemeWebDesign = styled.p`
   ${CategoriesThemes}
   background-color: #FFE4C2;
   color: #ff6d00;
-  opacity: ${(props) => props.selectedWebDesign ? ("1") : ("0.4")}
 `;
 
 export const ThemeResearch = styled.label`

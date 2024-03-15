@@ -100,9 +100,8 @@ export default function PopNewCard() {
                     name="topic"
                     value="Web Design"
                     onChange={handleInputChange}
-                    
                   />
-                  <S.ThemeWebDesign $selectedWebDesign={handleInputChange} htmlFor="radio1">
+                  <S.ThemeWebDesign htmlFor="radio1">
                     Web Design
                   </S.ThemeWebDesign>
 
@@ -114,7 +113,6 @@ export default function PopNewCard() {
                     onChange={handleInputChange}
                   />
                   <S.ThemeResearch htmlFor="radio2">Research</S.ThemeResearch>
-
                   <S.ThemeInputs
                     type="radio"
                     id="radio3"
