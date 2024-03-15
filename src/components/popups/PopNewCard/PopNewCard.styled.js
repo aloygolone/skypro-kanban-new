@@ -113,6 +113,7 @@ export const FormNewBlock = styled.div`
 `;
 
 export const FormNewInputArea = styled.textarea`
+  font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
@@ -147,6 +148,7 @@ export const FormNewInputArea = styled.textarea`
 `;
 
 export const FormNewInput = styled.input`
+  font-family: "Roboto";
   margin: 20px 0;
   min-width: 290px;
   resize: none;
