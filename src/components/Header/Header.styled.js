@@ -64,6 +64,7 @@ export const HeaderBtnMainNew = styled.button`
 `;
 
 export const HeaderUser = styled.div`
+  user-select: none;
   height: 20px;
   display: flex;
   flex-wrap: nowrap;
