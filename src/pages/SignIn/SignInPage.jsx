@@ -28,6 +28,7 @@ export default function SignInPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (Object.values(loginData).includes("")) {
+      alert("Введите свои данные!");
       return;
     }
     setIsSubMitted(true);
@@ -37,7 +38,6 @@ export default function SignInPage() {
         navigate(appRoutes.HOME);
       })
       .catch(() => {
-        
         setIsNotCorrect(true);
       });
   };
@@ -53,7 +53,7 @@ export default function SignInPage() {
                 <h2>Вход</h2>
               </S.ModalTitleSignPage>
               <SignInForm
-              isSubmitted={isSubmitted}
+                isSubmitted={isSubmitted}
                 loginData={loginData}
                 isNotCorrect={isNotCorrect}
                 handleInputChange={handleInputChange}
