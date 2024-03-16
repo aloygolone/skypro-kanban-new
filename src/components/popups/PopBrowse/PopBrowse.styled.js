@@ -1,5 +1,5 @@
 import { css, styled } from "styled-components";
-import { hover01, hover03 } from "../../../styled/common/Common.styled";
+import { fadeIn, hover01, hover03 } from "../../../styled/common/Common.styled";
 import { themeStyles } from "../../../lib/ThemeColor";
 
 export const PopBrowseStyled = styled.div`
@@ -11,6 +11,7 @@ export const PopBrowseStyled = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
+  animation: ${fadeIn} 200ms linear;
   &:target {
     display: block;
   }
@@ -65,12 +66,18 @@ export const PopBrowseTopBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 50px;
 `;
 export const PopBrowseTitle = styled.h3`
   color: #000;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  word-break: break-all;
 `;
 
 export const PopBrowseStatus = styled.div`
@@ -154,7 +161,8 @@ export const FormBrowseArea = styled.div`
   word-break: break-all;
   max-width: 300px;
   margin-top: 14px;
-  min-height: 44vh;
+  min-height: 200px;
+  height: 330px;
   max-height: 60vh;
   outline: none;
   padding: 14px;
@@ -297,13 +305,13 @@ export const ButtonDiscard = styled.button`
 `;
 
 export const OpenedCardTheme = styled.div`
+  white-space: nowrap;
   font-family: "Roboto";
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
   letter-spacing: 0em;
   text-align: center;
-  display: inline-block;
   width: auto;
   height: 30px;
   padding: 8px 20px;

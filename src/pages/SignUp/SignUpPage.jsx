@@ -32,6 +32,7 @@ export default function SignUpPage() {
     setIsNotFilledPassword(false);
     setIsNotFilled(false);
     setIsSubMitted(false);
+    setIsNotCorrectEmail(false);
 
     setLoginData({
       ...loginData,

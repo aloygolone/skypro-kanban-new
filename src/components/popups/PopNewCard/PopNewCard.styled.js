@@ -1,6 +1,6 @@
 import { css, styled } from "styled-components";
 import { themeStyles } from "../../../lib/ThemeColor";
-import { hover01 } from "../../../styled/common/Common.styled";
+import { fadeIn, hover01 } from "../../../styled/common/Common.styled";
 
 export const PopNewCardStyled = styled.div`
   display: block;
@@ -18,6 +18,7 @@ export const PopNewCardStyled = styled.div`
   @media screen and (max-width: 660px) {
     top: 70px;
   }
+  animation: ${fadeIn} 300ms linear;
 `;
 
 export const PopNewCardContainer = styled.div`
