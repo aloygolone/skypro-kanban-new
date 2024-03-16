@@ -10,7 +10,6 @@ export default function Calendar({
   selectedDate,
   setSelectedDate,
   selectedDateBrowse,
-  isDiscard,
 }) {
   let footer = <CalendarText>Выберите срок исполнения</CalendarText>;
   if (selectedDate) {
@@ -33,7 +32,7 @@ export default function Calendar({
   return (
     <CalendarDateStyled
       mode="single"
-      selected={isDiscard ? { selectedDateBrowse } : { selectedDate }}
+      selected={selectedDate}
       onSelect={setSelectedDate}
       footer={footer}
     />

@@ -127,7 +127,7 @@ export const FormNewInputArea = styled.textarea`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.25;
   letter-spacing: -0.14px;
   &::-moz-placeholder {
     font-weight: 400;
@@ -147,6 +147,10 @@ export const FormNewInputArea = styled.textarea`
     max-width: 100%;
     height: 34px;
   }
+`;
+
+export const FormNewInputAreaForBrowse = styled(FormNewInputArea)`
+  height: 330px;
 `;
 
 export const FormNewInput = styled.input`

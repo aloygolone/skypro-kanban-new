@@ -7,7 +7,10 @@ import { themeNameColor } from "../../../lib/ThemeColor";
 import { GlobalStyle } from "../../../styled/global/Global.styled";
 import { useState } from "react";
 import { CalendarStyled, TitleDate } from "../../Calendar/Calendar.styled";
-import { FormNewInputArea, ThemeInputs } from "../PopNewCard/PopNewCard.styled";
+import {
+  FormNewInputAreaForBrowse,
+  ThemeInputs,
+} from "../PopNewCard/PopNewCard.styled";
 import { useUser } from "../../../hooks/useUser";
 import { deleteTodo, putTodo } from "../../../api/api";
 import { NotCorrectText } from "../../../styled/common/SignPages.styled";
@@ -17,7 +20,7 @@ export default function PopBrowse() {
   const { user } = useUser();
   const { id } = useParams();
   const { cards, setCards } = useTasks();
-  
+
   const navigate = useNavigate();
 
   const openedCard = cards.filter((card) => card._id === id);
@@ -33,7 +36,6 @@ export default function PopBrowse() {
   const [selectedDate, setSelectedDate] = useState(selectedCardData.date);
   const [editTask, setEditTask] = useState(selectedCardData);
   const [isSubmitted, setIsSubMitted] = useState(false);
- 
 
   const handleEditMode = () => {
     setIsEditMode(true);
@@ -158,12 +160,12 @@ export default function PopBrowse() {
                       Описание задачи
                     </S.FormBrowseTitle>
                     {isEditMode ? (
-                      <FormNewInputArea
+                      <FormNewInputAreaForBrowse
                         type="textarea"
                         name="description"
                         value={editTask.description}
                         onChange={handleInputChange}
-                      ></FormNewInputArea>
+                      ></FormNewInputAreaForBrowse>
                     ) : (
                       <S.FormBrowseArea>
                         {openedCard[0].description}
