@@ -86,8 +86,8 @@ export const PopNewCardClose = styled.span`
 `;
 
 export const PopNewCardWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
+display: flex;
+justify-content: space-between;
   width: 590px;
   @media screen and (max-width: 660px) {
     display: block;
@@ -95,7 +95,8 @@ export const PopNewCardWrap = styled.div`
 `;
 
 export const PopNewCardForm = styled.form`
-  width: 400px;
+box-sizing: content-box;
+  width: 150%;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -152,7 +153,8 @@ export const FormNewInputArea = styled.textarea`
 export const FormNewInput = styled.input`
   font-family: "Roboto";
   margin: 20px 0;
-  min-width: 290px;
+  max-width: 370px;
+  box-sizing: border-box;
   resize: none;
   outline: none;
   padding: 14px;

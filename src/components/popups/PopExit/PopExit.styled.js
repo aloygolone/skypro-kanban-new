@@ -112,11 +112,11 @@ export const PopExitNo = styled.button`
   line-height: 21px;
   font-weight: 500;
   letter-spacing: -0.14px;
-  color: #565EEF;
+  color: #565eef;
   a {
     width: 100%;
     height: 100%;
-    color: #565EEF;
+    color: #565eef;
     display: flex;
     align-items: center;
     justify-content: center;

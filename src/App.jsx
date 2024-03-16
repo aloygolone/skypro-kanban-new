@@ -4,7 +4,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import HomePage from "./pages/Home/HomePage";
 import TaskPage from "./pages/Task/TaskPage";
 import ExitPage from "./pages/Exit/ExitPage";
-import "./App.css";
 import AddTaskPage from "./pages/AddTask/AddTaskPage";
 import SignInPage from "./pages/SignIn/SignInPage";
 import SignUpPage from "./pages/SignUp/SignUpPage";

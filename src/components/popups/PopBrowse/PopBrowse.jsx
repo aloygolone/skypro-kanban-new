@@ -7,11 +7,11 @@ import { themeNameColor } from "../../../lib/ThemeColor";
 import { GlobalStyle } from "../../../styled/global/Global.styled";
 import { useState } from "react";
 import { CalendarStyled, TitleDate } from "../../Calendar/Calendar.styled";
-import { statusList } from "../../../lib/statusList";
 import { FormNewInputArea, ThemeInputs } from "../PopNewCard/PopNewCard.styled";
 import { useUser } from "../../../hooks/useUser";
 import { deleteTodo, putTodo } from "../../../api/api";
 import { NotCorrectText } from "../../../styled/common/SignPages.styled";
+import { statusList } from "../../../lib/statusList";
 
 export default function PopBrowse() {
   const { user } = useUser();
@@ -31,14 +31,18 @@ export default function PopBrowse() {
   const [selectedDate, setSelectedDate] = useState(selectedCardData.date);
   const [editTask, setEditTask] = useState(selectedCardData);
   const [isSubmitted, setIsSubMitted] = useState(false);
+  const [isDiscard, setIsDiscard] = useState(false);
 
   const handleEditMode = () => {
     setIsEditMode(true);
+    setIsDiscard(false);
+    setSelectedDate(selectedCardData.date);
   };
 
   const handleDiscard = () => {
     setIsEditMode(false);
     setEditTask(selectedCardData);
+    setIsDiscard(true);
   };
 
   const handleInputChange = (e) => {
@@ -122,13 +126,14 @@ export default function PopBrowse() {
                     statusList.map((el, index) => (
                       <>
                         <ThemeInputs
+                        key={`${el}${index}fhfh`}
                           type="radio"
                           id={`radio${index}`}
-                          name="status"
                           value={el}
                           onChange={handleInputChange}
                         />
                         <S.NewSelectedStatus
+                        key={`${el}${index}fhfhsdf`}
                           $isChecked={editTask.status === el}
                           htmlFor={`radio${index}`}
                         >
@@ -157,13 +162,9 @@ export default function PopBrowse() {
                         onChange={handleInputChange}
                       ></FormNewInputArea>
                     ) : (
-                      <S.FormBrowseArea
-                        typeof="textarea"
-                        name="text"
-                        id="textArea01"
-                        readOnly
-                        value={openedCard[0].description}
-                      ></S.FormBrowseArea>
+                      <S.FormBrowseArea>
+                        {openedCard[0].description}
+                      </S.FormBrowseArea>
                     )}
                   </S.FormBrowseBlock>
                 </S.PopBrowseForm>
@@ -171,11 +172,15 @@ export default function PopBrowse() {
                   <TitleDate htmlFor="formTitle">Даты</TitleDate>
                   {isEditMode ? (
                     <Calendar
+                      isDiscard={isDiscard}
                       selectedDate={selectedDate}
                       setSelectedDate={setSelectedDate}
                     />
                   ) : (
-                    <Calendar selectedDate={openedCard[0].date} />
+                    <Calendar
+                      isDiscard={isDiscard}
+                      selectedDateBrowse={openedCard[0].date}
+                    />
                   )}
                 </CalendarStyled>
               </S.PopBrowseWrap>
@@ -210,7 +215,9 @@ export default function PopBrowse() {
                   </S.ButtonDelete>
                 </S.ButtonGroup>
                 <Link to={appRoutes.HOME}>
-                  <S.ButtonClose $isSubmitted={isSubmitted}>Закрыть</S.ButtonClose>
+                  <S.ButtonClose $isSubmitted={isSubmitted}>
+                    Закрыть
+                  </S.ButtonClose>
                 </Link>
                 {isNotCorrect && (
                   <NotCorrectText>

@@ -1,14 +1,36 @@
 import styled from "styled-components";
 import { SubTitle } from "../../styled/common/Common.styled";
+import { DayPicker } from "react-day-picker";
 
 export const CalendarStyled = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: "Roboto";
-  max-width: 300px;
   margin-bottom: 20px;
+  align-content: flex-start;
 `;
 
 export const TitleDate = styled(SubTitle)`
-padding-left: 20px;
-`
+  padding-left: 17px;
+`;
+
+export const CalendarText = styled.span`
+  font-family: "Roboto";
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  color: #94a6be;
+`;
+
+export const CalendarTextDate = styled(CalendarText)`
+  color: #000000;
+`;
+
+export const CalendarDateStyled = styled(DayPicker)`
+  font-family: "Roboto";
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0.14em;
+  color: #94a6be;
+`;

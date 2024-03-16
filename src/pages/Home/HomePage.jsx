@@ -17,7 +17,6 @@ export default function HomePage() {
   const { cards, setCards } = useTasks();
 
   useEffect(() => {
-    
     getTodos({ token: user.token })
       .then((todos) => {
         setCards(todos.tasks);
@@ -36,7 +35,7 @@ export default function HomePage() {
       <WrapperStyled>
         <Outlet />
 
-        <Header />
+        <Header isLoading={isLoading} />
         <MainContent>
           {statusList.map((status) => (
             <Column

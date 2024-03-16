@@ -71,31 +71,33 @@ export default function PopNewCard() {
                 <S.PopNewCardClose>&#10006;</S.PopNewCardClose>
               </Link>
               <S.PopNewCardWrap>
-                <S.PopNewCardForm>
-                  <S.FormNewBlock>
-                    <SubTitle htmlFor="formTitle">Название задачи</SubTitle>
-                    <S.FormNewInput
-                      type="text"
-                      name="title"
-                      value={newTask.title}
-                      onChange={handleInputChange}
-                      id="formTitle"
-                      placeholder="Введите название задачи..."
-                      autoFocus
-                    />
-                  </S.FormNewBlock>
-                  <S.FormNewBlock>
-                    <SubTitle htmlFor="textArea">Описание задачи</SubTitle>
-                    <S.FormNewInputArea
-                      type="textarea"
-                      name="description"
-                      value={newTask.description}
-                      onChange={handleInputChange}
-                      id="textArea"
-                      placeholder="Введите описание задачи..."
-                    ></S.FormNewInputArea>
-                  </S.FormNewBlock>
-                </S.PopNewCardForm>
+                <div>
+                  <S.PopNewCardForm>
+                    <S.FormNewBlock>
+                      <SubTitle htmlFor="formTitle">Название задачи</SubTitle>
+                      <S.FormNewInput
+                        type="text"
+                        name="title"
+                        value={newTask.title}
+                        onChange={handleInputChange}
+                        id="formTitle"
+                        placeholder="Введите название задачи..."
+                        autoFocus
+                      />
+                    </S.FormNewBlock>
+                    <S.FormNewBlock>
+                      <SubTitle htmlFor="textArea">Описание задачи</SubTitle>
+                      <S.FormNewInputArea
+                        type="textarea"
+                        name="description"
+                        value={newTask.description}
+                        onChange={handleInputChange}
+                        id="textArea"
+                        placeholder="Введите описание задачи..."
+                      ></S.FormNewInputArea>
+                    </S.FormNewBlock>
+                  </S.PopNewCardForm>
+                </div>
                 <CalendarStyled>
                   <TitleDate htmlFor="formTitle">Даты</TitleDate>
                   <Calendar
@@ -123,8 +125,6 @@ export default function PopNewCard() {
                   >
                     Web Design
                   </S.CardThemeToSelect>
-
-                  {console.log(newTask.topic)}
                   <S.ThemeInputs
                     type="radio"
                     id="radio2"

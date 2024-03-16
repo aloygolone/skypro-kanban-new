@@ -103,7 +103,10 @@ export const ModalButtonEnterSignPage = styled.span`
   width: 100%;
   height: 30px;
   background-color: ${(props) =>
-    props.$isNotCorrect || props.$isNotFilled || props.$isNotCorrectEmail || props.$isSubmitted
+    props.$isNotCorrect ||
+    props.$isNotFilled ||
+    props.$isNotCorrectEmail ||
+    props.$isSubmitted
       ? "#94A6BE"
       : "#565eef"};
   border-radius: 4px;
@@ -129,7 +132,10 @@ export const ModalButtonEnterSignPage = styled.span`
   }
   &:hover {
     ${(props) =>
-      props.$isNotFilled || props.$isNotCorrect || props.$isNotCorrectEmail || props.$isSubmitted
+      props.$isNotFilled ||
+      props.$isNotCorrect ||
+      props.$isNotCorrectEmail ||
+      props.$isSubmitted
         ? ""
         : hover01}
   }

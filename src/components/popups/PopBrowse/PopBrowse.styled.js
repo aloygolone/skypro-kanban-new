@@ -149,13 +149,12 @@ export const FormBrowseTitle = styled.div`
   line-height: 1;
 `;
 
-export const FormBrowseArea = styled.textarea`
+export const FormBrowseArea = styled.div`
   font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
-  height: 200px;
-  min-height: 100px;
-  max-height: 45vh;
+  min-height: 44vh;
+  max-height: 60vh;
   outline: none;
   padding: 14px;
   background: #eaeef6;
@@ -163,10 +162,8 @@ export const FormBrowseArea = styled.textarea`
   border-radius: 8px;
   font-size: 14px;
   margin-top: 14px;
-  height: 200px;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1px;
   color: #94a6be;
   letter-spacing: 0.5px;
 
@@ -223,7 +220,7 @@ export const Button = css`
   height: 30px;
   border-radius: 4px;
   outline: none;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
@@ -251,7 +248,7 @@ export const ButtonDelete = styled.button`
   border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
   color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
   background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
-  
+
   &:hover {
     ${(props) => (props.$isSubmitted ? "" : hover03)}
   }
@@ -264,7 +261,7 @@ export const ButtonChange = styled.button`
   border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
   color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
   background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
-  
+
   &:hover {
     ${(props) => (props.$isSubmitted ? "" : hover03)}
   }
@@ -290,7 +287,7 @@ export const ButtonDiscard = styled.button`
   border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
   color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
   background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
-  
+
   &:hover {
     ${(props) => (props.$isSubmitted ? "" : hover03)}
   }

@@ -23,6 +23,8 @@ export const HeaderLogo = styled.div`
   img {
     width: 85px;
   }
+
+  pointer-events: ${(props) => (props.$isLoading ? "none" : "auto")};
 `;
 
 export const HeaderNav = styled.nav`
@@ -34,6 +36,36 @@ export const HeaderNav = styled.nav`
 `;
 
 export const HeaderBtnMainNew = styled.button`
+  width: 178px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #565eef;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+  margin-right: 20px;
+  a {
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 495px) {
+    z-index: 3;
+    position: fixed;
+    left: 16px;
+    bottom: 30px;
+    top: auto;
+    width: calc(100vw - 32px);
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 0;
+  }
+
+  ${hover01}
+`;
+
+export const HeaderBtnMainNewLocked = styled.button`
   width: 178px;
   height: 30px;
   border-radius: 4px;
@@ -92,4 +124,6 @@ export const HeaderUser = styled.div`
     margin: -6px 0 0 5px;
     padding: 0;
   }
+
+  pointer-events: ${(props) => (props.$isLoading ? "none" : "auto")};
 `;

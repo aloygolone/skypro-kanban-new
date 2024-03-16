@@ -35,7 +35,11 @@ export default function SignInForm({
       ) : (
         ""
       )}
-      <S.ModalButtonEnterSignPage onClick={handleLogin} $isNotCorrect={isNotCorrect} $isSubmitted={isSubmitted}>
+      <S.ModalButtonEnterSignPage
+        onClick={handleLogin}
+        $isNotCorrect={isNotCorrect}
+        $isSubmitted={isSubmitted}
+      >
         Войти
       </S.ModalButtonEnterSignPage>
 
