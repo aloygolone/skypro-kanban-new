@@ -17,7 +17,7 @@ export default function PopBrowse() {
   const { user } = useUser();
   const { id } = useParams();
   const { cards, setCards } = useTasks();
-  const [isEditMode, setIsEditMode] = useState(false);
+  
   const navigate = useNavigate();
 
   const openedCard = cards.filter((card) => card._id === id);
@@ -28,15 +28,18 @@ export default function PopBrowse() {
     status: openedCard[0].status,
     date: openedCard[0].date,
   };
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [isDiscard, setIsDiscard] = useState(false);
   const [selectedDate, setSelectedDate] = useState(selectedCardData.date);
   const [editTask, setEditTask] = useState(selectedCardData);
   const [isSubmitted, setIsSubMitted] = useState(false);
-  const [isDiscard, setIsDiscard] = useState(false);
+ 
 
   const handleEditMode = () => {
     setIsEditMode(true);
     setIsDiscard(false);
     setSelectedDate(selectedCardData.date);
+    setEditTask(selectedCardData);
   };
 
   const handleDiscard = () => {
@@ -65,7 +68,7 @@ export default function PopBrowse() {
       return;
     }
 
-    setIsSubMitted(true);
+    // setIsSubMitted(true);
     const taskData = {
       ...editTask,
       date: selectedDate,
@@ -126,7 +129,8 @@ export default function PopBrowse() {
                     statusList.map((el, index) => (
                       <>
                         <ThemeInputs
-                          key={`input-${el.id}`}
+                          // key={`input-${el.id}`}
+                          name={"status"}
                           type="radio"
                           id={`radio${index}`}
                           value={el}

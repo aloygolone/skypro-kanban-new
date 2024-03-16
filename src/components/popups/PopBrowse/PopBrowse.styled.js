@@ -151,7 +151,8 @@ export const FormBrowseTitle = styled.div`
 
 export const FormBrowseArea = styled.div`
   font-family: "Roboto";
-  max-width: 370px;
+  word-break: break-all;
+  max-width: 300px;
   margin-top: 14px;
   min-height: 44vh;
   max-height: 60vh;
