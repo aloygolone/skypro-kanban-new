@@ -107,7 +107,7 @@ export const NewSelectedStatus = styled(PopBrowseStatusTheme)`
 
 export const SelectedStatus = styled(PopBrowseStatusTheme)`
   background-color: #94a6be;
-  color: #FFFFFF;
+  color: #ffffff;
 `;
 
 export const PopBrowseStatusThemes = styled.div`
@@ -143,6 +143,7 @@ export const FormBrowseBlock = styled.div`
   }
 `;
 export const FormBrowseTitle = styled.div`
+
   color: #000;
   font-size: 14px;
   font-weight: 600;
@@ -150,6 +151,7 @@ export const FormBrowseTitle = styled.div`
 `;
 
 export const FormBrowseArea = styled.textarea`
+
   font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
@@ -162,24 +164,14 @@ export const FormBrowseArea = styled.textarea`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
   margin-top: 14px;
   height: 200px;
-  &::-moz-placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1px;
-    color: #94a6be;
-    letter-spacing: -0.14px;
-  }
-  &::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1px;
-    color: #94a6be;
-    letter-spacing: -0.14px;
-  }
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1px;
+  color: #94a6be;
+  letter-spacing: 0.5px;
+
   @media screen and (max-width: 495px) {
     max-width: 100%;
     height: 37px;

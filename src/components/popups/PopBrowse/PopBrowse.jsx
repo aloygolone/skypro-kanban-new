@@ -133,10 +133,11 @@ export default function PopBrowse() {
                       ></FormNewInputArea>
                     ) : (
                       <S.FormBrowseArea
+                      typeof="textarea"
                         name="text"
                         id="textArea01"
                         readOnly
-                        placeholder={openedCard[0].description}
+                        value={openedCard[0].description}
                       ></S.FormBrowseArea>
                     )}
                   </S.FormBrowseBlock>
