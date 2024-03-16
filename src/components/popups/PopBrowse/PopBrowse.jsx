@@ -11,6 +11,7 @@ import { statusList } from "../../../lib/statusList";
 import { FormNewInputArea, ThemeInputs } from "../PopNewCard/PopNewCard.styled";
 import { useUser } from "../../../hooks/useUser";
 import { deleteTodo, putTodo } from "../../../api/api";
+import { NotCorrectText } from "../../../styled/common/SignPages.styled";
 
 export default function PopBrowse() {
   const { user } = useUser();
@@ -41,6 +42,7 @@ export default function PopBrowse() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setIsNotCorrect(false);
 
     setEditTask({
       ...editTask,
@@ -48,8 +50,14 @@ export default function PopBrowse() {
     });
   };
 
+  const [isNotCorrect, setIsNotCorrect] = useState(false);
+
   const handleFormSave = async (e) => {
     e.preventDefault();
+    if (editTask.description === "") {
+      setIsNotCorrect(true);
+      return;
+    }
     const taskData = {
       ...editTask,
       date: selectedDate,
@@ -134,7 +142,7 @@ export default function PopBrowse() {
                       ></FormNewInputArea>
                     ) : (
                       <S.FormBrowseArea
-                      typeof="textarea"
+                        typeof="textarea"
                         name="text"
                         id="textArea01"
                         readOnly
@@ -179,6 +187,11 @@ export default function PopBrowse() {
                 <Link to={appRoutes.HOME}>
                   <S.ButtonCloseSave>Закрыть</S.ButtonCloseSave>
                 </Link>
+                {isNotCorrect && (
+                  <NotCorrectText>
+                    Нельзя оставлять описание пустым. Внесите данные
+                  </NotCorrectText>
+                )}
               </S.PopBrowseButtonBrowse>
             </S.PopBrowseContent>
           </S.PopBrowseBlock>
