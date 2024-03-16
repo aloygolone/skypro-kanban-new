@@ -30,6 +30,7 @@ export default function PopBrowse() {
   };
   const [selectedDate, setSelectedDate] = useState(selectedCardData.date);
   const [editTask, setEditTask] = useState(selectedCardData);
+  const [isSubmitted, setIsSubMitted] = useState(false);
 
   const handleEditMode = () => {
     setIsEditMode(true);
@@ -54,33 +55,48 @@ export default function PopBrowse() {
 
   const handleFormSave = async (e) => {
     e.preventDefault();
+
     if (editTask.description === "") {
       setIsNotCorrect(true);
       return;
     }
+
+    setIsSubMitted(true);
     const taskData = {
       ...editTask,
       date: selectedDate,
       token: user.token,
       id: id,
     };
-    await putTodo(taskData).then((data) => {
-      setCards(data.tasks);
-      navigate(appRoutes.HOME);
-    });
+
+    await putTodo(taskData)
+      .then((data) => {
+        setCards(data.tasks);
+        navigate(appRoutes.HOME);
+      })
+      .catch(() => {
+        alert("Похоже отсутствует интернет, попробуйте позже");
+        setIsSubMitted(false);
+      });
   };
 
   const handleFormDelete = async (e) => {
     e.preventDefault();
+    setIsSubMitted(true);
     const taskData = {
       ...editTask,
       token: user.token,
       id: id,
     };
-    await deleteTodo(taskData).then((data) => {
-      setCards(data.tasks);
-      navigate(appRoutes.HOME);
-    });
+    await deleteTodo(taskData)
+      .then((data) => {
+        setCards(data.tasks);
+        navigate(appRoutes.HOME);
+      })
+      .catch(() => {
+        alert("Похоже отсутствует интернет, попробуйте позже");
+        setIsSubMitted(false);
+      });
   };
 
   return (
@@ -168,28 +184,37 @@ export default function PopBrowse() {
                 <S.ButtonGroup>
                   {isEditMode ? (
                     <>
-                      <S.ButtonCloseSave onClick={handleFormSave}>
+                      <S.ButtonSave
+                        onClick={handleFormSave}
+                        $isSubmitted={isSubmitted}
+                      >
                         Сохранить
-                      </S.ButtonCloseSave>
-                      <S.ButtonChangeDelete onClick={handleDiscard}>
+                      </S.ButtonSave>
+                      <S.ButtonDiscard
+                        onClick={handleDiscard}
+                        $isSubmitted={isSubmitted}
+                      >
                         Отменить
-                      </S.ButtonChangeDelete>
+                      </S.ButtonDiscard>
                     </>
                   ) : (
-                    <S.ButtonChangeDelete>
-                      <a onClick={handleEditMode}>Редактировать задачу</a>
-                    </S.ButtonChangeDelete>
+                    <S.ButtonChange onClick={handleEditMode}>
+                      Редактировать задачу
+                    </S.ButtonChange>
                   )}
-                  <S.ButtonChangeDelete onClick={handleFormDelete}>
+                  <S.ButtonDelete
+                    onClick={handleFormDelete}
+                    $isSubmitted={isSubmitted}
+                  >
                     Удалить задачу
-                  </S.ButtonChangeDelete>
+                  </S.ButtonDelete>
                 </S.ButtonGroup>
                 <Link to={appRoutes.HOME}>
-                  <S.ButtonCloseSave>Закрыть</S.ButtonCloseSave>
+                  <S.ButtonClose $isSubmitted={isSubmitted}>Закрыть</S.ButtonClose>
                 </Link>
                 {isNotCorrect && (
                   <NotCorrectText>
-                    Нельзя оставлять описание пустым. Внесите данные
+                    Нельзя оставлять описание пустым. Внесите данные.
                   </NotCorrectText>
                 )}
               </S.PopBrowseButtonBrowse>

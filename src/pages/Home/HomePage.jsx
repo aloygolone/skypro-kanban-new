@@ -11,16 +11,6 @@ import { useTasks } from "../../hooks/useTasks";
 import { loaderTasks } from "../../components/loaders/HomePageLoader/HomePageLoader.data";
 import { statusList } from "../../lib/statusList";
 
-// const statusList = [
-//   "Без статуса",
-//   "Нужно сделать",
-//   "В работе",
-//   "Тестирование",
-//   "Готово",
-// ];
-
-// const loaderCards = [1, 2, 3, 4]
-
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();

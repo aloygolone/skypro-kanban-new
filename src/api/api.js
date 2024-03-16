@@ -26,6 +26,7 @@ export async function postTodo(taskData) {
     },
     method: "POST",
     body: JSON.stringify({
+      status: "Без статуса",
       title: taskData.title,
       topic: taskData.topic,
       description: taskData.description,

@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 import { hover01, hover03 } from "../../../styled/common/Common.styled";
 import { themeStyles } from "../../../lib/ThemeColor";
 
@@ -143,7 +143,6 @@ export const FormBrowseBlock = styled.div`
   }
 `;
 export const FormBrowseTitle = styled.div`
-
   color: #000;
   font-size: 14px;
   font-weight: 600;
@@ -151,7 +150,6 @@ export const FormBrowseTitle = styled.div`
 `;
 
 export const FormBrowseArea = styled.textarea`
-
   font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
@@ -220,29 +218,86 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const ButtonChangeDelete = styled.button`
+export const Button = css`
+  width: auto;
+  height: 30px;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
-  background: transparent;
-  color: #565eef;
-  a {
-    color: #565eef;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  @media screen and (max-width: 495px) {
+    width: 100%;
+    height: 40px;
   }
-  ${hover03}
 `;
 
-export const ButtonCloseSave = styled.button`
-  border-radius: 4px;
-  background: #565eef;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  a {
-    color: #ffffff;
+export const ButtonClose = styled.button`
+  ${Button}
+  border: 0;
+  color: #fff;
+  float: left;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
   }
-  ${hover01}
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
 `;
+
+export const ButtonDelete = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+  
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonChange = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+  
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonSave = styled.button`
+  ${Button}
+  border: 0;
+  color: #ffffff;
+  float: left;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonDiscard = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+  
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
 export const OpenedCardTheme = styled.div`
   font-family: "Roboto";
   font-size: 14px;

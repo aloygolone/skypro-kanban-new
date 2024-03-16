@@ -16,16 +16,17 @@ export default function PopNewCard() {
   const { setCards } = useTasks();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isSubmitted, setIsSubMitted] = useState(false);
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
     topic: "",
+    date: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    console.log(newTask.topic);
+    setIsSubMitted(false);
 
     setNewTask({
       ...newTask,
@@ -40,11 +41,22 @@ export default function PopNewCard() {
       date: selectedDate,
       token: user.token,
     };
-    await postTodo(taskData).then((data) => {
-      setCards(data.tasks);
-      console.log(data.tasks);
-      navigate(appRoutes.HOME);
-    });
+
+    if (Object.values(taskData).includes("")) {
+      return alert(
+        "Нельзя оставлять пустые поля - необходимо внести все данные, выбрать дату и выбрать категорию"
+      );
+    }
+    setIsSubMitted(true);
+    await postTodo(taskData)
+      .then((data) => {
+        setCards(data.tasks);
+        navigate(appRoutes.HOME);
+      })
+      .catch(() => {
+        alert("Похоже отсутствует интернет, попробуйте позже");
+        setIsSubMitted(false);
+      });
   };
 
   return (
@@ -143,7 +155,10 @@ export default function PopNewCard() {
                   </S.CardThemeToSelect>
                 </S.PopNewCategoriesThemes>
               </S.PopNewCategories>
-              <S.FormNewSubmit onClick={handleFormSubmit}>
+              <S.FormNewSubmit
+                onClick={handleFormSubmit}
+                $isSubmitted={isSubmitted}
+              >
                 Создать задачу
               </S.FormNewSubmit>
             </S.PopNewCardContent>

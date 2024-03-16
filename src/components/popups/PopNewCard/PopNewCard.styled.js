@@ -1,5 +1,6 @@
 import { css, styled } from "styled-components";
 import { themeStyles } from "../../../lib/ThemeColor";
+import { hover01 } from "../../../styled/common/Common.styled";
 
 export const PopNewCardStyled = styled.div`
   display: block;
@@ -223,7 +224,7 @@ export const RadioLabel = styled.label``;
 export const FormNewSubmit = styled.button`
   width: 132px;
   height: 30px;
-  background-color: #565eef;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
   border-radius: 4px;
   border: 0;
   outline: none;
@@ -236,6 +237,11 @@ export const FormNewSubmit = styled.button`
     width: 100%;
     height: 40px;
   }
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
 `;
 
 export const ThemeInputs = styled.input`
