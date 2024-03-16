@@ -126,14 +126,13 @@ export default function PopBrowse() {
                     statusList.map((el, index) => (
                       <>
                         <ThemeInputs
-                        key={`${el}${index}fhfh`}
+                          key={`input-${el.id}`}
                           type="radio"
                           id={`radio${index}`}
                           value={el}
                           onChange={handleInputChange}
                         />
                         <S.NewSelectedStatus
-                        key={`${el}${index}fhfhsdf`}
                           $isChecked={editTask.status === el}
                           htmlFor={`radio${index}`}
                         >
