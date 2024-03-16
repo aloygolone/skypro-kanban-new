@@ -52,6 +52,7 @@ export default function PopBrowse() {
     e.preventDefault();
     const taskData = {
       ...editTask,
+      date: selectedDate,
       token: user.token,
       id: id,
     };
