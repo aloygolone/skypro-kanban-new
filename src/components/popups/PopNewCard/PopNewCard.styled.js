@@ -119,7 +119,7 @@ export const FormNewInputArea = styled.textarea`
   font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
-  min-height: 330px;
+  min-height: 230px;
   max-height: 55vh;
   outline: none;
   padding: 14px;
