@@ -40,7 +40,7 @@ export default function Header({ isLoading }) {
             <S.HeaderUser $isLoading={isLoading} onClick={togglePopUser}>
               {user.name}
             </S.HeaderUser>
-            {isOpenUser && <PopUser />}
+            {isOpenUser && <PopUser  setIsOpenUser={setIsOpenUser} />}
           </S.HeaderNav>
         </S.HeaderBlock>
       </Container>

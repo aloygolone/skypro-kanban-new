@@ -27,10 +27,14 @@ export const CalendarTextDate = styled(CalendarText)`
 `;
 
 export const CalendarDateStyled = styled(DayPicker)`
+width: 100%;
   font-family: "Roboto";
   font-size: 10px;
   font-weight: 500;
   line-height: 12px;
   letter-spacing: 0.14em;
   color: #94a6be;
+  --rdp-cell-size: 30px;
+  .rdp-caption_label {text-transform: capitalize;}
+  
 `;

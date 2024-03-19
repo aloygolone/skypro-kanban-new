@@ -81,6 +81,7 @@ export const CardBtn = styled.div`
 `;
 
 export const CardContent = styled.div`
+width: 100%;
   height: 64px;
   display: flex;
   flex-direction: column;
@@ -89,12 +90,18 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.h3`
+width: 100%;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
   color: #000000;
   margin-bottom: 10px;
   box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* overflow-wrap: break-word; */
+  /* word-break: break-all; */
+  overflow: hidden;
 `;
 
 export const CardDate = styled.div`

@@ -129,9 +129,9 @@ export default function PopBrowse() {
                 <S.PopBrowseStatusThemes>
                   {isEditMode ? (
                     statusList.map((el, index) => (
-                      <>
+                      <div key={`input-${index}`}>
                         <ThemeInputs
-                          // key={`input-${el.id}`}
+                          
                           name={"status"}
                           type="radio"
                           id={`radio${index}`}
@@ -144,7 +144,7 @@ export default function PopBrowse() {
                         >
                           {el}
                         </S.NewSelectedStatus>
-                      </>
+                      </div>
                     ))
                   ) : (
                     <S.SelectedStatus>

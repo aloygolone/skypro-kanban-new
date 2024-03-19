@@ -69,6 +69,7 @@ export const PopBrowseTopBlock = styled.div`
   gap: 50px;
 `;
 export const PopBrowseTitle = styled.h3`
+
   color: #000;
   font-size: 20px;
   font-weight: 600;
@@ -175,6 +176,7 @@ export const FormBrowseArea = styled.div`
   font-size: 14px;
   color: #94a6be;
   letter-spacing: 0.5px;
+  overflow: hidden;
 
   @media screen and (max-width: 495px) {
     max-width: 100%;

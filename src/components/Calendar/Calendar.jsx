@@ -5,6 +5,7 @@ import {
   CalendarTextDate,
 } from "./Calendar.styled";
 import dateFormat from "../../lib/dateFormat";
+import { ru } from "date-fns/locale";
 
 export default function Calendar({
   selectedDate,
@@ -35,6 +36,7 @@ export default function Calendar({
       selected={selectedDate}
       onSelect={setSelectedDate}
       footer={footer}
+      locale={ru}
     />
   );
 }
