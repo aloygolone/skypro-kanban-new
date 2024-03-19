@@ -1,19 +1,42 @@
-import { format } from "date-fns";
-import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import ru from "date-fns/locale/ru";
+import {
+  CalendarDateStyled,
+  CalendarText,
+  CalendarTextDate,
+} from "./Calendar.styled";
+import dateFormat from "../../lib/dateFormat";
+import { ru } from "date-fns/locale";
 
-export default function Calendar({ selectedDate, setSelectedDate }) {
-  let footer = <p>Пожалуйста, выберите дату</p>;
+export default function Calendar({
+  selectedDate,
+  setSelectedDate,
+  selectedDateBrowse,
+}) {
+  let footer = <CalendarText>Выберите срок исполнения</CalendarText>;
   if (selectedDate) {
-    footer = <p>Вы выбрали {format(selectedDate, "PP", { locale: ru })}.</p>;
+    footer = (
+      <>
+        <CalendarText>Срок исполнения: </CalendarText>
+        <CalendarTextDate>{dateFormat(selectedDate)}.</CalendarTextDate>
+      </>
+    );
+  }
+
+  if (selectedDateBrowse) {
+    footer = (
+      <>
+        <CalendarText>Срок исполнения: </CalendarText>
+        <CalendarTextDate>{dateFormat(selectedDateBrowse)}.</CalendarTextDate>
+      </>
+    );
   }
   return (
-    <DayPicker
+    <CalendarDateStyled
       mode="single"
       selected={selectedDate}
       onSelect={setSelectedDate}
       footer={footer}
+      locale={ru}
     />
   );
 }

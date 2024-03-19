@@ -35,7 +35,12 @@ export const CardItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: stretch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  word-break: break-all;
+
   padding: 15px 13px 19px;
 
   @media screen and (max-width: 1200px) {
@@ -46,7 +51,6 @@ export const CardItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: stretch;
     padding: 15px 13px 19px;
   }
 `;
@@ -58,6 +62,7 @@ export const CardGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  word-break: break-all;
 `;
 
 export const CardBtn = styled.div`
@@ -76,6 +81,7 @@ export const CardBtn = styled.div`
 `;
 
 export const CardContent = styled.div`
+width: 100%;
   height: 64px;
   display: flex;
   flex-direction: column;
@@ -84,11 +90,18 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.h3`
+width: 100%;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
   color: #000000;
   margin-bottom: 10px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* overflow-wrap: break-word; */
+  /* word-break: break-all; */
+  overflow: hidden;
 `;
 
 export const CardDate = styled.div`

@@ -1,7 +1,6 @@
 import { css, styled } from "styled-components";
-import { hover01, hover03 } from "../../../styled/common/Common.styled";
+import { fadeIn, hover01, hover03 } from "../../../styled/common/Common.styled";
 import { themeStyles } from "../../../lib/ThemeColor";
-import { ThemeText } from "../../Card/Card.styled";
 
 export const PopBrowseStyled = styled.div`
   width: 100%;
@@ -12,6 +11,7 @@ export const PopBrowseStyled = styled.div`
   top: 0;
   left: 0;
   z-index: 7;
+  animation: ${fadeIn} 200ms linear;
   &:target {
     display: block;
   }
@@ -55,60 +55,79 @@ export const PopBrowseBlock = styled.div`
 `;
 
 export const PopBrowseContent = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   text-align: left;
   opacity: 1;
-  margin-bottom: 20px;
 `;
 
 export const PopBrowseTopBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  gap: 50px;
 `;
-export const PopBroweTitle = styled.h3`
+export const PopBrowseTitle = styled.h3`
+
   color: #000;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  word-break: break-all;
 `;
 
 export const PopBrowseStatus = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-bottom: 11px;
+  width: 570px;
+  height: 60px;
+  gap: 14px;
 `;
 export const PopBrowseStatusTitle = styled.p`
-  margin-bottom: 14px;
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
 `;
 
-export const PopBrowseStatusThemes = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-`;
-
-export const PopBrowseStatusTheme = css`
+export const PopBrowseStatusTheme = styled.label`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  p {
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: -0.14px;
-  }
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
 `;
+
+export const NewSelectedStatus = styled(PopBrowseStatusTheme)`
+  background: ${({ $isChecked }) => ($isChecked ? "#94a6be" : "")};
+  color: ${({ $isChecked }) => ($isChecked ? "#FFFFFF" : "#94a6be")};
+`;
+
+export const SelectedStatus = styled(PopBrowseStatusTheme)`
+  background-color: #94a6be;
+  color: #ffffff;
+`;
+
+export const PopBrowseStatusThemes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 export const PopBrowseWrap = styled.div`
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  width: 590px;
   @media screen and (max-width: 660px) {
     display: block;
   }
@@ -127,41 +146,38 @@ export const PopBrowseForm = styled.form`
 export const FormBrowseBlock = styled.div`
   display: flex;
   flex-direction: column;
+  textarea {
+    resize: vertical;
+  }
 `;
-export const FormBrowseTitle = styled.label`
+export const FormBrowseTitle = styled.div`
   color: #000;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
 `;
 
-export const FormBrowseArea = styled.textarea`
-  max-width: 370px;
-  width: 100%;
+export const FormBrowseArea = styled.div`
+  font-family: "Roboto";
+  word-break: break-all;
+  max-width: 300px;
+  margin-top: 14px;
+  min-height: 200px;
+  height: 330px;
+  max-height: 60vh;
   outline: none;
   padding: 14px;
   background: #eaeef6;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
   margin-top: 14px;
-  height: 200px;
-  &::-moz-placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1px;
-    color: #94a6be;
-    letter-spacing: -0.14px;
-  }
-  &::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1px;
-    color: #94a6be;
-    letter-spacing: -0.14px;
-  }
+  font-weight: 400;
+  font-size: 14px;
+  color: #94a6be;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+
   @media screen and (max-width: 495px) {
     max-width: 100%;
     height: 37px;
@@ -210,31 +226,94 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-export const ButtonChengeDelete = styled.button`
+export const Button = css`
+  width: auto;
+  height: 30px;
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
-  background: transparent;
-  color: #565eef;
-  a {
-    color: #565eef;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  @media screen and (max-width: 495px) {
+    width: 100%;
+    height: 40px;
   }
-  ${hover03}
 `;
 
 export const ButtonClose = styled.button`
-  border-radius: 4px;
-  background: #565eef;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  a {
-    color: #ffffff;
+  ${Button}
+  border: 0;
+  color: #fff;
+  float: left;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
   }
-  ${hover01}
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
 `;
+
+export const ButtonDelete = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonChange = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonSave = styled.button`
+  ${Button}
+  border: 0;
+  color: #ffffff;
+  float: left;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ButtonDiscard = styled.button`
+  ${Button}
+  border: ${(props) => (props.$isSubmitted ? "0" : "0.7px solid #565EEF")};
+  color: ${(props) => (props.$isSubmitted ? "#ffffff" : "#565EEF")};
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#ffffff")};
+
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover03)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
 export const OpenedCardTheme = styled.div`
-  display: inline-block;
+  white-space: nowrap;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
   width: auto;
   height: 30px;
   padding: 8px 20px;
@@ -244,7 +323,5 @@ export const OpenedCardTheme = styled.div`
   background-color: ${({ $themeColor }) =>
     themeStyles[$themeColor]?.backgroundColor || "#94a6be"};
 
-  ${ThemeText} {
-    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#ffffff"};
-  }
+  color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#ffffff"};
 `;

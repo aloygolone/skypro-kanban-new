@@ -1,19 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "../../styled/common/SignPages.styled";
 import { GlobalStyleSignPage } from "../../styled/global/SignPagesGlobal.styled";
 import { useState } from "react";
 import { signIn } from "../../api/api";
 import { useUser } from "../../hooks/useUser";
+import SignInForm from "../../components/SignIn/SignInForm/SignInForm";
 
-export default function SignIn() {
+export default function SignInPage() {
   const { login } = useUser();
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ login: "", password: "" });
   const [isNotCorrect, setIsNotCorrect] = useState(false);
+  const [isSubmitted, setIsSubMitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setIsNotCorrect(false);
+    setIsSubMitted(false);
 
     setLoginData({
       ...loginData,
@@ -23,6 +27,11 @@ export default function SignIn() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (Object.values(loginData).includes("")) {
+      alert("Введите свои данные!");
+      return;
+    }
+    setIsSubMitted(true);
     await signIn(loginData)
       .then((data) => {
         login(data.user);
@@ -43,34 +52,13 @@ export default function SignIn() {
               <S.ModalTitleSignPage>
                 <h2>Вход</h2>
               </S.ModalTitleSignPage>
-              <S.ModalFormLoginSignPage>
-                <S.ModalInputSignPage
-                  value={loginData.login}
-                  onChange={handleInputChange}
-                  type="text"
-                  name="login"
-                  placeholder="Эл. почта"
-                />
-                <S.ModalInputSignPage
-                  value={loginData.password}
-                  onChange={handleInputChange}
-                  type="password"
-                  name="password"
-                  placeholder="Пароль"
-                />
-                <S.ModalButtonEnterSignPage onClick={handleLogin}>
-                  Войти
-                </S.ModalButtonEnterSignPage>
-                {isNotCorrect
-                  ? "Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа."
-                  : ""}
-                <S.ModalFormGroupSignPage>
-                  <p>Нужно зарегистрироваться?</p>
-                  <Link to={appRoutes.SIGNUP}>
-                    <span>Регистрируйтесь здесь</span>
-                  </Link>
-                </S.ModalFormGroupSignPage>
-              </S.ModalFormLoginSignPage>
+              <SignInForm
+                isSubmitted={isSubmitted}
+                loginData={loginData}
+                isNotCorrect={isNotCorrect}
+                handleInputChange={handleInputChange}
+                handleLogin={handleLogin}
+              />
             </S.ModalBlockSignPage>
           </S.ModalSignPage>
         </S.ContainerSignPage>

@@ -77,3 +77,13 @@ export const PopUserSetTheme = styled.div`
 export const PopUserButton = styled.button`
   ${hover03}
 `;
+
+export const LayOut = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+`;

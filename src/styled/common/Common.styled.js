@@ -74,3 +74,10 @@ export const PopUserSet = css`
     display: block;
   }
 `;
+
+export const SubTitle = styled.div`
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;
