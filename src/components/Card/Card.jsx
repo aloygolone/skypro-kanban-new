@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { themeNameColor } from "../../lib/ThemeColor";
 import * as S from "./Card.styled";
+import dateFormat from "../../lib/dateFormat";
 
 export default function Card({ theme, title, date, id }) {
   return (
@@ -48,7 +49,7 @@ export default function Card({ theme, title, date, id }) {
                   </clipPath>
                 </defs>
               </svg>
-              <p>{date}</p>
+              <p>{dateFormat(date)}</p>
             </S.CardDate>
           </S.CardContent>
         </S.CardItem>

@@ -1,4 +1,6 @@
 import { css, styled } from "styled-components";
+import { themeStyles } from "../../../lib/ThemeColor";
+import { fadeIn, hover01 } from "../../../styled/common/Common.styled";
 
 export const PopNewCardStyled = styled.div`
   display: block;
@@ -16,6 +18,7 @@ export const PopNewCardStyled = styled.div`
   @media screen and (max-width: 660px) {
     top: 70px;
   }
+  animation: ${fadeIn} 300ms linear;
 `;
 
 export const PopNewCardContainer = styled.div`
@@ -39,7 +42,6 @@ export const PopNewCardContainer = styled.div`
 `;
 
 export const PopNewCardBlock = styled.div`
-  display: block;
   margin: 0 auto;
   background-color: #ffffff;
   max-width: 630px;
@@ -59,9 +61,13 @@ export const PopNewCardBlock = styled.div`
 export const PopNewCardContent = styled.div`
   display: block;
   text-align: left;
+  max-width: 620px;
 `;
 
 export const PopNewCardTitle = styled.h3`
+  font-family: "Roboto";
+  letter-spacing: 0px;
+  text-align: left;
   color: #000;
   font-size: 20px;
   font-weight: 600;
@@ -82,17 +88,18 @@ export const PopNewCardClose = styled.span`
 
 export const PopNewCardWrap = styled.div`
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  width: 590px;
   @media screen and (max-width: 660px) {
     display: block;
   }
 `;
 
 export const PopNewCardForm = styled.form`
-  max-width: 370px;
-  width: 100%;
-  display: block;
+  box-sizing: content-box;
+  width: 150%;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
   @media screen and (max-width: 495px) {
     max-width: 100%;
@@ -104,20 +111,24 @@ export const PopNewCardForm = styled.form`
 export const FormNewBlock = styled.div`
   display: flex;
   flex-direction: column;
+  textarea {
+    resize: vertical;
+  }
 `;
 
 export const FormNewInputArea = styled.textarea`
+  font-family: "Roboto";
   max-width: 370px;
   margin-top: 14px;
-  height: 200px;
-  width: 100%;
+  min-height: 230px;
+  max-height: 55vh;
   outline: none;
   padding: 14px;
   background: transparent;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.25;
   letter-spacing: -0.14px;
   &::-moz-placeholder {
     font-weight: 400;
@@ -139,9 +150,16 @@ export const FormNewInputArea = styled.textarea`
   }
 `;
 
+export const FormNewInputAreaForBrowse = styled(FormNewInputArea)`
+  height: 330px;
+`;
+
 export const FormNewInput = styled.input`
+  font-family: "Roboto";
   margin: 20px 0;
-  width: 100%;
+  max-width: 370px;
+  box-sizing: border-box;
+  resize: none;
   outline: none;
   padding: 14px;
   background: transparent;
@@ -191,38 +209,28 @@ export const CategoriesThemes = css`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 1;
-  p {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 14px;
-    white-space: nowrap;
-    opacity: 1;
-  }
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+  text-align: center;
 `;
 
-export const ThemeWebDesign = styled.label`
+export const CardThemeToSelect = styled.label`
   ${CategoriesThemes}
-  background-color: #FFE4C2;
-  color: #ff6d00;
+
+  background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.backgroundColor};
+  color: ${({ $themeColor }) => themeStyles[$themeColor]?.color};
+  opacity: ${({ $isChecked }) => ($isChecked ? "1" : "0.4")};
 `;
 
-export const ThemeResearch = styled.label`
-  ${CategoriesThemes}
-  background-color: #B4FDD1;
-  color: #06b16e;
-`;
-
-export const ThemeCopywriting = styled.label`
-  ${CategoriesThemes}
-  background-color: #E9D4FF;
-  color: #9a48f1;
-`;
-
+export const RadioLabel = styled.label``;
 export const FormNewSubmit = styled.button`
   width: 132px;
   height: 30px;
-  background-color: #565eef;
+  background-color: ${(props) => (props.$isSubmitted ? "#94A6BE" : "#565eef")};
   border-radius: 4px;
   border: 0;
   outline: none;
@@ -235,4 +243,13 @@ export const FormNewSubmit = styled.button`
     width: 100%;
     height: 40px;
   }
+  &:hover {
+    ${(props) => (props.$isSubmitted ? "" : hover01)}
+  }
+
+  pointer-events: ${(props) => (props.$isSubmitted ? "none" : "auto")};
+`;
+
+export const ThemeInputs = styled.input`
+  display: none;
 `;
